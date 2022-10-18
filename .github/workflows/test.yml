@@ -24,7 +24,6 @@ jobs:
                 
     - name: generate _book folder
       run: |
-        book sm
         gitbook build
                 
     - name: push _book to branch gh-pages 
