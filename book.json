@@ -1,0 +1,13 @@
+{
+  "title": "cyan文档库",
+  "author" : "cyan",
+  "description": "just to say hi",
+  "theme-default": {
+    "showLevel": true
+  },
+  "plugins": [
+    "anchor-navigation-ex",
+    "chapter-fold",
+    "theme-comscore"
+  ]
+}

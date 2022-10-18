@@ -1,0 +1,10 @@
+[Maven依赖成功导入但任然报错找不到包解决方案](https://blog.csdn.net/weixin_42058472/article/details/106638027)  
+
+java -cp etl.jar com.newerabc.etl.EtlApplication --spring.profiles.active=dev
+java -jar etl.jar --spring.profiles.active=dev
+https://zhuanlan.zhihu.com/p/214093661
+java -Xms256m -Xmx1g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dmysql.host=${DB_HOST} -Dmysql.port=${DB_PORT} -Dmysql.username=${DB_USER} -Dmysql.password=${DB_PASSWORD} -Dmysql.database=${DB_DATABASE} -Dredis.host=${REDIS_HOST} -Dredis.port=${REDIS_PORT} -Dnifi.base.path=${NIFI_BASE_PATH} -Dnifi.template.server.path=${NIFI_SERVER_PATH} -Dnifi.template.target.path=${NIFI_TARGET_PATH} -Dspring.profiles.active=${PROFILE} -Djava.security.egd=file:/dev/./urandom -jar /app/app.jar
+
+
+
+[scope解释](https://www.cnblogs.com/satire/p/15068971.html#:~:text=Maven%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20scope%20%E6%9D%A5%E6%8C%87%E5%AE%9A%E5%BD%93%E5%89%8D%E5%8C%85%E7%9A%84%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4%E5%92%8C%E4%BE%9D%E8%B5%96%E7%9A%84%E4%BC%A0%E9%80%92%E6%80%A7%E3%80%82%20%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8F%AF%E9%80%89%E5%80%BC%E6%9C%89%EF%BC%9A%20compile%2C%20provided%2C%20runtime%2C,%E4%B8%BB%E8%A6%81%E6%98%AF%E7%94%A8%E5%9C%A8%20pom.xml%20%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E5%AE%9A%E4%B9%89%E9%83%A8%E5%88%86%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%20compile%20%EF%BC%9A%E4%B8%BA%20%E9%BB%98%E8%AE%A4%E7%9A%84%20%E4%BE%9D%E8%B5%96%E6%9C%89%E6%95%88%E8%8C%83%E5%9B%B4%E3%80%82%20%E5%A6%82%E6%9E%9C%E5%9C%A8%E5%AE%9A%E4%B9%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%98%8E%E7%A1%AE%E6%8C%87%E5%AE%9A%E4%BE%9D%E8%B5%96%E6%9C%89%E6%95%88%E8%8C%83%E5%9B%B4%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%88%99%E9%BB%98%E8%AE%A4%E9%87%87%E7%94%A8%E8%AF%A5%E4%BE%9D%E8%B5%96%E6%9C%89%E6%95%88%E8%8C%83%E5%9B%B4%E3%80%82)
