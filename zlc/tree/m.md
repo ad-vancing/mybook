@@ -1,6 +1,6 @@
 https://blog.csdn.net/Real_Fool_/article/details/113930623
 
-https://programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html
+
 
 # 二叉树
 二叉树就是每个节点最多有两个子节点的树。
@@ -38,14 +38,14 @@ https://programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%B
 
 后续：左、右、中
 
-[演示](https://www.bilibili.com/video/BV1Ub4y147Zv/?spm_id_from=333.337.search-card.all.click)
-
-# 题
-[二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
-自上而下、从左到右的顺序
-
-[二叉树求最大宽度](https://leetcode.cn/problems/maximum-width-of-binary-tree/solution/er-cha-shu-zui-da-kuan-du-by-leetcode-so-9zp3/)
-注意两端点间的 null 节点也需要计入宽度！  层序遍历 + （索引之差 + 1）
-https://www.bilibili.com/video/BV1Bv411j76y/?spm_id_from=333.337.search-card.all.click
-
+[一个有趣的演示](https://www.bilibili.com/video/BV1Ub4y147Zv/?spm_id_from=333.337.search-card.all.click)  
 https://www.jianshu.com/p/456af5480cee
+
+# 练习
+[二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
+
+[二叉树求最大宽度](https://leetcode.cn/problems/maximum-width-of-binary-tree/solution/er-cha-shu-zui-da-kuan-du-by-leetcode-so-9zp3/)  
+注意两端点间的 null 节点也需要计入宽度！  层序遍历 + （索引之差 + 1）
+
+
+

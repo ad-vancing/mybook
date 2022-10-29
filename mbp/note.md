@@ -14,7 +14,7 @@ command d iterm 打开一个tab
 hive： /usr/local/hadoop/docker-hive
 /Users/guanliyuan/Library/Python/2.7/lib/python/site-packages
 
-
+# 在合上盖子后还能继续用外接键盘和显示器工作
 实习：
 https://www.uxuqiu.com/home.php?mod=space&do=home&view=all&order=dateline&page=2
 https://nowpick.nowcoder.com/w/intern/center?recruitType=2

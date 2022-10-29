@@ -4,10 +4,6 @@ https://kafka.apachecn.org/intro.html
 
 https://github.com/apache/kafka/
 
-
-# MQ的连接是线程安全的吗
-
-
 # 为什么使用 Kafka
 是一款开源、轻量级、可分区、可备份、高吞吐量的基于zookeeper的分布式流平台的发布订阅消息系统。能很好地处理活跃的流数据。使得数据在各个子系统中高性能、低延迟地不停流转。
 最初由Linkedin公司开发。
@@ -26,9 +22,9 @@ https://github.com/apache/kafka/
 
 # Kafka 的各个组件
 Producer、Broker、Consumer   
-![](http://cdn.17coding.info/WeChat%20Screenshot_20190325215237.png)
+![图](http://cdn.17coding.info/WeChat%20Screenshot_20190325215237.png)
 
-- Broker：Broker是kafka实例。  
+- Broker：Broker是kafka的服务实例。  
 每个服务器上有一个或多个kafka的实例。每个kafka集群内的broker都有一个不重复的编号，如图中的broker-0、broker-1等……    
 第一个在ZooKeeper上成功创建 /controller 节点的 Broker 会被指定为控制器。控制器依赖 ZooKeeper行使其管理和协调的职责。
 
@@ -69,7 +65,7 @@ kafka的数据就保存在topic。在每个broker上都可以创建多个topic�
 消息生产者发布的消息会被顺序写入对应的日志文件中。  
 因为只能追加写入，故避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作，这也是实现 Kafka **高吞吐量**特性的一个重要手段。 
 
-消息被追加写到当前最新的日志段中，当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。 
+  消息被追加写到当前最新的日志段中，当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。 
 
 - 消费者comsumer  
 以拉取pull方式拉取数据。  
@@ -97,8 +93,8 @@ kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群�
 
 
 
-## Kafka 存储机制等
-为了防止 log 文件过大导致数据定位效率低下，那么Kafka 采取了分片和索引机制。 
+# Kafka 存储机制等
+为了防止 log 文件过大导致数据定位效率低下，那么Kafka 采取了**分片**和**索引机制**。 
 
 当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。
  
@@ -107,14 +103,14 @@ kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群�
 
 [参考](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488841&idx=1&sn=2ea884012493403ab45b450271708fc8&source=41#wechat_redirect)
 
-# kafka是按照什么规则将消息划分到各个分区的
+## kafka是按照什么规则将消息划分到各个分区的
 如果producer指定了要发送的目标分区，消息自然是去到那个分区；
 
 否则就按照producer端参数partitioner.class指定的分区策略来定；
 
 如果你没有指定过partitioner.class，那么默认的规则是：看消息是否有key，如果有则计算key的murmur2哈希值%topic分区数；如果没有key，按照**轮询**的方式确定分区。
 
-## 分区策略
+### 分区策略
 - 轮询Round-robin
 - 随机Randomness(逊)
 - 按消息键保序策略
@@ -253,16 +249,12 @@ Kafka 把所有不在 ISR 中的存活副本都称为**非同步副本**。
 通常来说，非同步副本落后 Leader 太多，因此，如果选择这些副本作为新 Leader，就会出现数据的丢失（但是提升了高可用性），选举这种副本的过程称为 Unclean 领导者选举。  
 参数 `unclean.leader.election.enable` 控制是否允许 Unclean 领导者选举。
 
-
-
-
-
 ## High Watermark 和 LEO（Log End Offset）
 Follower 是先从 Leader 那去同步然后再写入磁盘的，所以它磁盘上面的数据肯定会比 Leader 的那块少一些。  
 **高水位** hw：副本最新一条己提交消息的 offset（都有的）     
 **日志末端位移** leo：副本中下一条待写入消息的 offset  
 
-![](https://img2022.cnblogs.com/blog/1331583/202210/1331583-20221016122546090-1040396702.png)
+![图](https://img2022.cnblogs.com/blog/1331583/202210/1331583-20221016122546090-1040396702.png)
 
 Kafka 所有副本都有对应的高水位和 LEO 值。  
 Kafka 使用 Leader 副本的高水位来定义所在分区的高水位。换句话说，分区的高水位就是其 Leader 副本的高水位。  
@@ -299,9 +291,9 @@ Leader 副本高水位更新和 Follower 副本高水位更新在时间上是存
 如有两个 Leader Epoch<0, 0> 和 <1, 120>，那么，第一个 Leader Epoch 表示版本号是 0，这个版本的 Leader 从位移 0 开始保存消息，一共保存了 120 条消息。之后，Leader 发生了变更，版本号增加到 1，新版本的起始位移是 120。
 
 这样，每次有 Leader 变更时，新的 Leader 副本会查询这部分缓存，取出对应的 Leader Epoch 的起始位移，以避免数据丢失和不一致的情况。
+
 # 场景设计
 [Kafka生产级容量评估方案](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488846&idx=1&sn=1d77a05c7e94abd8044502c433d9aeee&source=41#wechat_redirect)
-
 
 # 三次消息传递的过程中数据重复或丢失的问题
 ## 消息传递语义
@@ -446,11 +438,11 @@ commitSync(Map<TopicPartition, OffsetAndMetadata>) 和 commitAsync(Map<TopicPart
 
 # 补充拓展
 
-## Kafka 拦截器
+## Kafka 拦截器（了解）
 Kafka 拦截器分为生产者拦截器和消费者拦截器。生产者拦截器允许你在发送消息前以及消息提交成功后植入你的拦截器逻辑；而消费者拦截器支持在消费消息前以及提交位移后编写特定逻辑。值得一提的是，这两种拦截器都支持链的方式，即你可以将一组拦截器串连成一个大的拦截器，Kafka 会按照添加顺序依次执行拦截器逻辑。
 
 ## Apache Kafka 的所有通信都是基于 TCP 的
-## Kafka 的 Producer 客户端是如何管理这些 TCP 连接的?
+### Kafka 的 Producer 客户端是如何管理这些 TCP 连接的?
 Java Producer 端管理 TCP 连接的方式是：  
 - KafkaProducer 实例创建时启动 Sender 线程，从而创建与 bootstrap.servers 中所有 Broker 的 TCP 连接。
 - KafkaProducer 实例首次更新元数据信息之后，还会再次创建与集群中所有 Broker 的 TCP 连接。

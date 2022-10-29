@@ -31,7 +31,7 @@ Struts通过OGNL存取数据，springmvc通过参数解析器是将request请求
 Spring的MVC框架是围绕DispatcherServlet来设计的，它用来处理所有的HTTP请求和响应。
 - 处理器映射器HandlerMapping（不需要程序员开发，准确说是  DefaultAnnotationHandlerMapping）
 作用：根据请求的URL来查找Handler
-Soring MVC提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等
+Spring MVC提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等
 - 处理器适配器HandlerAdapter
 注意：在编写Handler的时候要按照HandlerAdapter要求的规则去编写，这样适配器HandlerAdapter才可以正确的去执行Handler。
 这是适配器模式的应用，通过扩展适配器可以对更多烈性的处理器进行执行。
