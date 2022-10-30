@@ -18,6 +18,7 @@ MQ如何解决分布式事务
 然后如果要是某个下游系统突然宕机了呢？系统A的调用代码里是不是会抛异常？那系统A的同学会收到报警说异常了，结果他还要去care是下游哪个系统宕机了。所以在实际的系统架构设计中，如果全部采取直接调用下游系统发送数据这种系统耦合的方式，会严重的影响上下游系统的开发和维护效率。
 
 系统A可以把自己的一份核心数据发到MQ里， 通过Pub/Sub 发布订阅消息模型实现一对多通信，即广播。下游哪个系统感兴趣自己去消费即可，不需要了就取消数据的消费。
+
 ![图](https://upload-images.jianshu.io/upload_images/13589387-95c9134d8b5257bf?imageMogr2/auto-orient/strip|imageView2/2/w/769/format/webp)
 [Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点？](https://blog.csdn.net/ThinkWon/article/details/104588612)
 

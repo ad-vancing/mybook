@@ -1,10 +1,11 @@
-https://mp.weixin.qq.com/s?__biz=MzIyNjAzODEyMg==&mid=2247484763&idx=1&sn=f81b9fbdf26049e407fe78306014c654&source=41#wechat_redirect
+[参考](https://mp.weixin.qq.com/s?__biz=MzIyNjAzODEyMg==&mid=2247484763&idx=1&sn=f81b9fbdf26049e407fe78306014c654&source=41#wechat_redirect)
 
 # Spring声明式事务实现原理
 
-声明式事务成为可能，主要得益于Spring AOP。使用一个事务拦截器，在方法调用的前后/周围进行事务性增强（advice），来驱动事务完成。
+声明式事务成为可能，主要得益于Spring AOP。  
+使用一个事务拦截器，在方法调用的前后/周围进行事务性增强（advice），来驱动事务完成。
 
-Spring团队建议注解标注在类上而非接口上。
+Spring团队建议注解标注在类上而非接口上。  
 只有public方法支持事务。
 
 https://blog.csdn.net/qq_33369905/article/details/105828921
@@ -56,10 +57,10 @@ https://blog.csdn.net/qq_33369905/article/details/105828921
 
 
 # Spring事务不生效的原因
-1、是否是数据库引擎设置不对造成的。比如我们最常用的mysql，引擎MyISAM，是不支持事务操作的。需要改成InnoDB才能支持
-2、入口的方法必须是public，否则事务不起作用（这一点由Spring的AOP特性决定的，理论上而言，不public也能切入，但spring可能是觉得private自己用的方法，应该自己控制，不应该用事务切进去吧）。另外 final 方法 和 static 方法不能aop生效。
-3、Spring的事务管理默认只对出现运行期异常(java.lang.RuntimeException及其子类)进行回滚。
-4、确认你的类是否被代理了（因为spring的事务实现原理为AOP，只有通过代理对象调用方法才能被拦截，事务才能生效）
-5、确保你的业务和事务入口在同一个线程里，否则事务也是不生效的
+1、是否是数据库引擎设置不对造成的。比如我们最常用的mysql，引擎MyISAM，是不支持事务操作的。需要改成InnoDB才能支持  
+2、入口的方法必须是public，否则事务不起作用（这一点由Spring的AOP特性决定的，理论上而言，不public也能切入，但spring可能是觉得private自己用的方法，应该自己控制，不应该用事务切进去吧）。另外 final 方法 和 static 方法不能aop生效。  
+3、Spring的事务管理默认只对出现运行期异常(java.lang.RuntimeException及其子类)进行回滚。  
+4、确认你的类是否被代理了（因为spring的事务实现原理为AOP，只有通过代理对象调用方法才能被拦截，事务才能生效）  
+5、确保你的业务和事务入口在同一个线程里，否则事务也是不生效的  
 6、非事务方法this.调用本类中的事务方法。
   

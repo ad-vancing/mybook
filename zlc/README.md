@@ -12,6 +12,8 @@ https://github.com/liuyubobobo/Play-with-Algorithms
 堆（Heap）
 图（Graph）
 
+跳表 skip list ，其实就是一种可以进行二分查找的有序链表。
+
 #时间复杂度
 https://zhuanlan.zhihu.com/p/50479555
 算法的时间复杂度是一个函数，它定性描述了该算法的运行时间。描述一个算法在问题规模不断增大时对应的时间增长曲线。

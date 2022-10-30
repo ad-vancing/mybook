@@ -2,12 +2,12 @@
 简称时序数据库，Time Series Database，最大的特点就是每个条数据都带有Time列。
 业务场景————监控系统。
 
-特点：
-1. 支持类似SQL的查询语法
-2.提供了Http Api直接访问
+特点：  
+1. 支持类似SQL的查询语法  
+2. 提供了Http Api直接访问
 
 [版本区别]()
-1.x 版本使用 influxQL 查询语言，
+1.x 版本使用 influxQL 查询语言，  
 2.x 和 1.8+（beta） 使用 flux 查询语法；相比V1 移除了database 和 RP，增加了bucket。
 
 ## influxDB中独有的概念

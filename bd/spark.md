@@ -1,3 +1,0 @@
-# SparkSql如何把Sql转化成RDD可以执行的任务
-https://cloud.tencent.com/developer/article/2014097
-

@@ -5,10 +5,13 @@ https://kafka.apachecn.org/intro.html
 https://github.com/apache/kafka/
 
 # 为什么使用 Kafka
-是一款开源、轻量级、可分区、可备份、高吞吐量的基于zookeeper的分布式流平台的发布订阅消息系统。能很好地处理活跃的流数据。使得数据在各个子系统中高性能、低延迟地不停流转。
+Kafka 是一款开源、轻量级、可分区、可备份、高吞吐量的基于zookeeper的分布式流平台的发布订阅消息系统。能很好地处理活跃的流数据。使得数据在各个子系统中高性能、低延迟地不停流转。
+
 最初由Linkedin公司开发。
+
 具有高性能、持久化、多副本备份、横向扩展能力……… 
 
+```
 解耦：允许我们独立修改队列两边的处理过程而互不影响。
 
 冗余：有些情况下，我们在处理数据的过程会失败造成数据丢失。消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险, 确保你的数据被安全的保存直到你使用完毕
@@ -16,40 +19,39 @@ https://github.com/apache/kafka/
 峰值处理能力：不会因为突发的流量请求导致系统崩溃，消息队列能够使服务顶住突发的访问压力, 有助于解决生产消息和消费消息的处理速度不一致的情况
 
 异步通信：消息队列允许用户把消息放入队列但不立即处理它, 等待后续进行消费处理。
-
+```
 ## 应用场景
-解耦、异步通信、流量控制、应用监控、流处理、日志持久化处理
+应用监控、流处理、日志持久化处理
 
 # Kafka 的各个组件
-Producer、Broker、Consumer   
 ![图](http://cdn.17coding.info/WeChat%20Screenshot_20190325215237.png)
 
 - Broker：Broker是kafka的服务实例。  
-每个服务器上有一个或多个kafka的实例。每个kafka集群内的broker都有一个不重复的编号，如图中的broker-0、broker-1等……    
-第一个在ZooKeeper上成功创建 /controller 节点的 Broker 会被指定为控制器。控制器依赖 ZooKeeper行使其管理和协调的职责。
+每个服务器上有一个或多个kafka的实例。每个kafka集群内的broker都有一个不重复的编号，如broker-0、broker-1等……    
+>第一个在ZooKeeper上成功创建 /controller 节点的 Broker 会被指定为控制器。控制器依赖 ZooKeeper行使其管理和协调的职责。
 
-- Topic：消息的主题，可以理解为消息的分类，相当于rabbitMQ里的队列。  
-kafka的数据就保存在topic。在每个broker上都可以创建多个topic。生产者将消息发送到特定主题，消费者订阅主题或主题的某些分区进行消费。
+- Topic：可以理解为消息的分类，相当于rabbitMQ里的队列。  
+生产者将消息发送到特定主题，消费者订阅主题或主题的某些分区进行消费。
 
 - Partition：每个主题被分成一个或多个分区，分区数可配置、指定、修改。  
-每个分区由一系列有序、不可变的消息组成，是一个有序队列。
-分区数越多吞吐量越高，是负载均衡的基础，提高kafka的吞吐量。同一个topic在不同的分区的数据是不重复的，partition的表现形式就是一个一个的文件夹，命名规则是“主题名—分区编号”，分区编号从0开始，编号最大值是分区的总数减1。
-因为每一个分区对应消费者的一个处理线程，分区越多并发处理越好，但太多线程反而增加系统负担，需要通过测试确定合理分区数。
+每个分区由一系列有序、不可变的消息组成，是一个**有序队列**。
+partition的表现形式就是一个一个的文件夹，命名规则是“主题名—分区编号”，分区编号从0开始，编号最大值是分区的总数减1。  
+>分区数越多吞吐量越高，是负载均衡的基础，提高kafka的吞吐量。 因为每一个分区对应消费者的一个处理线程，分区越多并发处理越好，但太多线程反而增加系统负担，需要通过测试确定合理分区数。
 
 - Replication:每个分区有1至多个副本replica，它们分布在集群的不同代理上，以提高可用性。  
-当主分区（Leader）故障的时候会选择一个备胎（Follower）上位，成为Leader。
-在kafka中默认副本的最大数量是10个，且副本的数量不能大于Broker的数量，follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。
+当主分区（Leader）故障的时候会选择一个备胎（Follower）上位，成为Leader。  
+>在kafka中默认副本的最大数量是10个，且副本的数量不能大于Broker的数量，follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。
 
-- Message：是kafka通信的基本单位，由一个固定长度的消息头和一个可变长的消息体构成。  
-每条消息被追加到相应的分区中，是顺序写磁盘，因此效率高。
-消息被消费后并不会立即被删除，kafka有两种删除已消费数据的策略：  
+- Message：是kafka通信的基本单位，由一个固定长度的消息头和一个可变长的消息体构成。   
+每条消息被追加到相应的分区中，是顺序写磁盘，因此效率高。  
+>消息被消费后并不会立即被删除，kafka有两种删除已消费数据的策略：  
 1）基于消息已存储的时长；  
 2）基于分区的大小。  
 支持Gzip、Snappy、LZ4这3种压缩方式。
 
 - 副本  
 每个分区的多个副本需要保证数据的一致性，kafka会选择一个副本作为leader副本，其他作为follower副本。  
-只有leader副本负责处理客户端的读写请求（“Read-your-writes），follower副本异步地从leader副本拉取数据。
+**只有leader副本负责处理客户端的读写请求（“Read-your-writes）**，follower副本**异步地**从leader副本拉取数据。
 
 - 偏移量offset  
 副本被抽象成一个日志对象，消息被追加到`.log`文件尾部，同时每条消息在日志文件中的位置都会对应一个按序递增的偏移量。  
@@ -60,9 +62,9 @@ kafka的数据就保存在topic。在每个broker上都可以创建多个topic�
 
 - 日志段logSegment  
 它是kafka日志对象分片的最小单位。  
+消息生产者发布的消息会被顺序写入对应的日志文件中。  
 每个分区文件夹中，有多个日志段。  
 一个日志段对应磁盘上一个具体日志文件`起始偏移量.log`和两个索引文件`.index`和`.timeindex`（分别表示消息偏移量索引文件和消息时间戳索引文件）。
-消息生产者发布的消息会被顺序写入对应的日志文件中。  
 因为只能追加写入，故避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作，这也是实现 Kafka **高吞吐量**特性的一个重要手段。 
 
   消息被追加写到当前最新的日志段中，当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。 
@@ -89,7 +91,8 @@ kafka的数据就保存在topic。在每个broker上都可以创建多个topic�
 - zookeeper  
 kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群信息、消费者偏移量信息、主题信息、分区状态信息、分区副本信息等。  
 通过zk的协调管理实现整个kafka集群的动态扩展、负载均衡。  
-0.9版本前消费者消费消息的偏移量记录在zk中。
+0.9版本前消费者消费消息的偏移量记录在zk中。  
+2.x版本的元数据信息都不保存在zk上了。
 
 
 
@@ -116,15 +119,13 @@ kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群�
 - 按消息键保序策略
 Kafka 允许为每条消息定义消息键，简称为 Key。可以是一个有着明确业务含义的字符串，比如客户代码、部门编号或是业务 ID 等，一旦消息被定义了 Key，那么你就可以保证同一个 Key 的所有消息都进入到相同的分区里面，由于每个分区下的消息处理都是有顺序的，故这个策略被称为按消息键保序策略
 
-# Kafka Consumer Group 特点
-每个 Consumer Group 有一个或者多个 Consumer。  
-Kafka 仅仅使用 Consumer Group 这一种机制，同时实现了传统消息引擎系统的两大模型：如果所有实例都属于同一个 Group，那么它实现的就是消息队列模型；如果所有实例分别属于不同的 Group，那么它实现的就是发布 / 订阅模型。
-  
-每个 Consumer Group 拥有一个公共且唯一的 Group ID
+# Kafka Consumer Group 
+每个 Consumer Group 有一个或者多个 Consumer。每个 Consumer Group 拥有一个公共且唯一的 Group ID。    
+>Kafka 仅仅使用 Consumer Group 这一种机制，同时实现了传统消息引擎系统的两大模型：如果所有实例都属于同一个 Group，那么它实现的就是消息队列模型；如果所有实例分别属于不同的 Group，那么它实现的就是发布 / 订阅模型。
   
 Consumer Group 在消费 Topic 的时候，Topic 的每个 Partition 只能分配给组内的某个 Consumer，只要被任何 Consumer 消费一次, 那么这条数据就可以认为被当前 Consumer Group 消费成功。
 
-在使用过程中不推荐设置大于总分区数的 Consumer 实例，这样只会浪费资源。
+>在使用过程中不推荐设置大于总分区数的 Consumer 实例，这样只会浪费资源。
 
 
 # Consumer之消费者组重分配机制 Consumer Rebalance
@@ -135,7 +136,7 @@ Rebalance 本质上是一种协议，规定了一个 Consumer Group 下的所有
 [参考](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488851&idx=1&sn=987824e5ba607e2e33ae0c64adb77d84&source=41#wechat_redirect)
 ## Consumer Group 何时进行 Rebalance 
 - 组成员数发生变更。比如有新的 Consumer 实例加入组或者离开组，抑或是有 Consumer 实例崩溃被“踢出”组，网络断了，心跳中断等。
-- 订阅主题数发生变更。Consumer Group 可以使用正则表达式的方式订阅主题，比如 consumer.subscribe(Pattern.compile(“t.*c”)) 就表明该 Group 订阅所有以字母 t 开头、字母 c 结尾的主题。在 Consumer Group 的运行过程中，你新创建了一个满足这样条件的主题，那么该 Group 就会发生 Rebalance。
+- 订阅主题数发生变更。Consumer Group 可以使用正则表达式的方式订阅主题，比如 `consumer.subscribe(Pattern.compile(“t.*c”))` 就表明该 Group 订阅所有以字母 t 开头、字母 c 结尾的主题。在 Consumer Group 的运行过程中，你新创建了一个满足这样条件的主题，那么该 Group 就会发生 Rebalance。
 - 订阅主题的分区数发生变更。Kafka 当前只能允许增加一个主题的分区数。当分区数增加时，就会触发订阅该主题的所有 Group 开启 Rebalance。
 
 ## Rebalance 的缺点
@@ -148,7 +149,7 @@ Rebalance 本质上是一种协议，规定了一个 Consumer Group 下的所有
 最好还是避免 Rebalance！！！
 
 ## Coordinator
-在 Kafka 中对应的术语是 Coordinator，它专门为 Consumer Group 服务，负责为 Group 执行 Rebalance 以及提供位移管理和组成员管理等。
+它专门为 Consumer Group 服务，负责为 Group 执行 Rebalance 以及提供位移管理和组成员管理等。
 
 ## 哪些 Rebalance 是不必要需要避免的？怎么避免
 - 未能及时发送心跳，导致 Consumer 被“踢出”Group 而引发的。  
@@ -176,7 +177,7 @@ Consumer 端还有一个参数，用于控制 Consumer 实际消费能力对 Reb
 
 ## 重平衡过程是如何通知到其他消费者实例的
 Kafka Java 消费者有一个单独的心跳线程来专门定期地执行心跳请求发送请求（Heartbeat Request）到 Broker 端的协调者，以表明它还存活着。  
-重平衡的通知机制正是通过心跳线程来完成的。当协调者决定开启新一轮重平衡后，它会将“REBALANCE_IN_PROGRESS”封装进心跳请求的响应中，发还给消费者实例。当消费者实例发现心跳响应中包含了“REBALANCE_IN_PROGRESS”，就能立马知道重平衡又开始了。
+重平衡的通知机制正是通过**心跳线程**来完成的。当协调者决定开启新一轮重平衡后，它会将“REBALANCE_IN_PROGRESS”封装进心跳请求的响应中，发还给消费者实例。当消费者实例发现心跳响应中包含了“REBALANCE_IN_PROGRESS”，就能立马知道重平衡又开始了。
 
 ## 重平衡时消费者组的状态流转
 Kafka 为消费者组定义了 5 种状态，它们分别是：Empty、Dead、PreparingRebalance、CompletingRebalance 和 Stable。  
@@ -208,21 +209,20 @@ https://zhuanlan.zhihu.com/p/443164257
 1. 不同的 Broker 分散运行在不同的机器上，这样如果集群中某一台机器宕机，即使在它上面运行的所有 Broker 进程都挂掉了，其他机器上的 Broker 也依然能够对外提供服务。
 2. 备份机制（Replication），每个 Partition 可以设置多个副本。此时我们对分区0,1,2分别设置3个副本（注:设置两个副本是比较合适的）。而且每个副本都是有"角色"之分的，它们会选取一个副本作为 Leader 副本，而其他的作为 Follower 副本，我们的 Producer 端在发送数据的时候，只能发送到Leader Partition里面 ，然后Follower Partition会去Leader那自行同步数据, Consumer 消费数据的时候，也只能从 Leader 副本那去消费数据的。
 
->Q:为什么 Kafka 不像 MySQL 那样允许追随者副本对外提供读服务？
+>Q:为什么 Kafka 不像 MySQL 那样允许追随者副本对外提供读服务？  
 因为mysql一般部署在不同的机器上一台机器读写会遇到瓶颈，Kafka中的领导者副本一般均匀分布在不同的broker中，已经起到了负载的作用。
 
 ## 高性能/吞吐量
 1. 顺序读写磁盘。Kafka 使用消息日志（Log）来保存数据，一个日志就是磁盘上一个只能追加写（Append-only）消息的物理文件。因为只能追加写入，故避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作。
-2. I/O 模型：epoll 系统调用则介于第三种和第四种模型(I/O 多路复用、信号驱动 I/O )之间。Kafka 客户端底层使用了 Java 的 selector，selector 在 Linux 上的实现机制是 epoll，而在 Windows 平台上的实现机制是 select。因此在这一点上将 Kafka 部署在 Linux 上是有优势的，因为能够获得更高效的 I/O 性能。
+2. I/O 模型：epoll 系统调用则介于I/O 多路复用和信号驱动 I/O 之间的。Kafka 客户端底层使用了 Java 的 selector，selector 在 Linux 上的实现机制是 epoll，而在 Windows 平台上的实现机制是 select。因此在这一点上将 Kafka 部署在 Linux 上是有优势的，因为能够获得更高效的 I/O 性能。
 3. 网络传输：零拷贝(Zero Copy)技术，就是当数据在磁盘和网络进行传输 时避免昂贵的内核态数据拷贝从而实现快速地数据传输。
 
 ## 零拷贝技术使用哪个方法实现
 让操作系统的 os cache 中的数据直接发送到网卡后传出给下游的消费者，中间跳过了两次拷贝数据的步骤，从而减少拷贝的 CPU 开销, 减少用户态内核态的上下文切换次数,  从而优化数据传输的性能。  
 
-Kafka 主要使用到了 mmap  和 sendfile 的方式来实现零拷贝,  对应java里面的 MappedByteBuffer 和 FileChannel.transferIO。  
+>Kafka 主要使用到了 mmap  和 sendfile 的方式来实现零拷贝,  对应java里面的 MappedByteBuffer 和 FileChannel.transferIO。  
 使用 java NIO 实现的 零拷贝,
 
-### Java 中也有类似的零拷贝技术，是哪个方法
 
 ## Leader节点的选举过程
 各个节点公平竞争抢占 Zookeeper 系统中创建 /controller临时节点，最先创建成功的节点会成为控制器，并拥有选举主题分区Leader节点的功能。
@@ -230,7 +230,7 @@ Kafka 主要使用到了 mmap  和 sendfile 的方式来实现零拷贝,  对应
 
 # 副本同步机制 
 [参考](https://www.cnblogs.com/huxi2b/p/7453543.html)
-## ISR，为什么需要引入 ISR
+## ISR
 每个分区都有一个 ISR(in-sync Replica) 列表，用于维护所有同步的、可用的副本。  
 如果一个follower副本宕机或落后太多，则该follower副本节点将从ISR列表中移除。  
 
@@ -246,13 +246,13 @@ Kafka 把所有不在 ISR 中的存活副本都称为**非同步副本**。
 
 ### Unclean 领导者选举
 如果 ISR 为空了，就说明 Leader 副本也“挂掉”了，Kafka 需要重新选举一个新的 Leader。  
-通常来说，非同步副本落后 Leader 太多，因此，如果选择这些副本作为新 Leader，就会出现数据的丢失（但是提升了高可用性），选举这种副本的过程称为 Unclean 领导者选举。  
-参数 `unclean.leader.election.enable` 控制是否允许 Unclean 领导者选举。
+非同步副本落后 Leader 太多，如果此时选择这些副本作为新 Leader，就会出现数据的丢失（但是提升了高可用性），选举这种副本的过程称为 Unclean 领导者选举。  
+>参数 `unclean.leader.election.enable` 控制是否允许 Unclean 领导者选举。
 
-## High Watermark 和 LEO（Log End Offset）
-Follower 是先从 Leader 那去同步然后再写入磁盘的，所以它磁盘上面的数据肯定会比 Leader 的那块少一些。  
-**高水位** hw：副本最新一条己提交消息的 offset（都有的）     
-**日志末端位移** leo：副本中下一条待写入消息的 offset  
+## High Watermark 和 Log End Offset
+Follower 是先从 Leader 那去同步然后再写入磁盘的，所以它磁盘上面的数据一般会比 Leader 的那块少一些。  
+**高水位hw** ：副本最新一条己提交消息的 offset（都有的）     
+**日志末端位移leo** ：副本中下一条待写入消息的 offset  
 
 ![图](https://img2022.cnblogs.com/blog/1331583/202210/1331583-20221016122546090-1040396702.png)
 
@@ -295,13 +295,15 @@ Leader 副本高水位更新和 Follower 副本高水位更新在时间上是存
 # 场景设计
 [Kafka生产级容量评估方案](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488846&idx=1&sn=1d77a05c7e94abd8044502c433d9aeee&source=41#wechat_redirect)
 
-# 三次消息传递的过程中数据重复或丢失的问题
+# 消息传递的过程中数据重复或丢失的问题
 ## 消息传递语义
 at most once：消息会丢，但不重复  
 at least once ：消息不丢，但被多次重复处理  
 exactly once：保证不丢失、且只会被精确的处理一次。  
 
-默认 Kafka 提供「at least once」语义的消息传递（不丢数据），允许用户通过在处理消息之前保存 Offset的方式提供 「at most once」 语义（不重复数据）。如果我们可以自己实现消费幂等，理想情况下这个系统的消息传递就是严格的「exactly once」, 也就是保证不丢失、且只会被精确的处理一次，但是这样是很难做到的。
+默认 Kafka 提供「at least once」语义的消息传递（不丢数据），允许用户通过在处理消息之前保存 Offset的方式提供 「at most once」 语义（不重复数据）。
+
+如果我们可以自己实现消费幂等，理想情况下这个系统的消息传递就是严格的「exactly once」, 也就是保证不丢失、且只会被精确的处理一次，但是这样是很难做到的。
 
 
 ## Producer 端发送消息给 Kafka Broker 端。
@@ -475,6 +477,7 @@ Java Producer 端管理 TCP 连接的方式是：
 ## zk 对 kafka 的作用
 - Kafka 重度依赖它实现各种各样的协调管理。  
 比如侦测 Broker 存活性是zk的临时节点。每个 Broker 启动后，会在 /brokers/ids 下创建一个临时 znode。当 Broker 宕机或主动关闭后，该 Broker 与 ZooKeeper 的会话结束，这个 znode 会被自动删除。同理，ZooKeeper 的 Watch 机制将这一变更推送给控制器，这样控制器就能知道有 Broker 关闭或宕机了，从而进行“善后”。
+
 
 - 元数据存储
 老版本的 Consumer Group 把消费消息的位移保存在 ZooKeeper 中。好处就是减少了 Kafka Broker 端的状态保存开销。这样可以自由地扩缩容，实现超强的伸缩性。  

@@ -1,6 +1,6 @@
 
 # 什么是Spring MVC 
-是 spring 的一个模块。
+是 spring 的一个模块。  
 是一个基于Java的实现了MVC设计模式的请求驱动类型的轻量级Web框架。
 通过把Model，View，Controller分离，将web层进行职责解耦，把复杂的web应用分成逻辑清晰的几部分，简化开发，减少出错，方便组内开发人员之间的配合。
 
@@ -76,7 +76,7 @@ View是一个接口， 它的实现类支持不同的视图类型（jsp，freema
 ```
 
 # Spring MVC的流程
-![](https://img-blog.csdn.net/20180708224853769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![图](https://img-blog.csdn.net/20180708224853769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 1. 用户发送请求至前端控制器DispatcherServlet；
 2. DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handle；
 3. 处理器映射器根据请求url找到具体的处理器Controller，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet；
@@ -227,8 +227,10 @@ ISO8859-1是tomcat默认编码，需要将tomcat编码后的内容按utf-8编码
 - ModelAndView 无敌的 带着数据 返回视图路径（返回视图时带着数据，一块返回） 不建议使用
 - String 返回视图路径 model带数据（返回视图就是返回视图，数据是由model带回，视图和数据解耦） 官方推荐此种方式，解耦，数据和视图分离MVC 建议使用
 - void ajax不需要跳转视图只需要返回数据 json格式数据 请求如果是ajax用次返回方式就比较合适 异步请求时使用
+
 # SpringMvc用什么对象从后台向前台传递数据的？
 通过ModelMap对象,可以在这个对象里面调用put方法,把对象加到里面,前台就可以通过el表达式拿到。
+
 # 怎么样把ModelMap里面的数据放入Session里面？
 可以在类上面加上@SessionAttributes注解,里面包含的字符串就是要放入session里面的key。
 
@@ -278,13 +280,13 @@ https://www.cnblogs.com/fangjian0423/p/springMVC-request-param-analysis.html
 # 拦截器
 Spring Web MVC 的处理器拦截器类似于Servlet 开发中的过滤器Filter，用于对处理器进行预处理和后处理。
 如：在进入action or controller之前先判断一下用户登没登陆：
-![](https://upload-images.jianshu.io/upload_images/4189525-8724bff50fd89b5b.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![图](https://upload-images.jianshu.io/upload_images/4189525-8724bff50fd89b5b.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
 Spring MVC拦截器允许我们拦截客户端请求并在三个地方处理它————`在处理之前`，`处理之后`或`完成之后（在呈现视图时）`。
 拦截器切面处理一些公共逻辑而避免重复处理程序代码（如日志记录），也可以用来更改Spring模型中全局使用的参数。
 
 实现拦截效果有两步：
 1. 拦截器定义：实现HandlerInterceptor接口或继承适配器类HandlerInterceptorAdapter
-![](https://upload-images.jianshu.io/upload_images/4189525-2a5aa0a6cbeecc56.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![图](https://upload-images.jianshu.io/upload_images/4189525-2a5aa0a6cbeecc56.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
 在preHandle方法中会选择放行不放行【返回true是放行，false是不放行】
 2. 拦截器配置：在springmvc.xml中配置拦截器】
 ```
@@ -301,10 +303,10 @@ Spring MVC拦截器允许我们拦截客户端请求并在三个地方处理它�
 [使用例子](https://www.jianshu.com/p/95d695c10fd0)
 
 # SpringMVC拦截器和过滤器区别
-- 过滤器
+- 过滤器  
 依赖于servlet容器，跟springmvc等框架并没有关系。在实现上基于函数回调，可以对几乎所有请求进行过滤，但是缺点是一个过滤器实例只能在容器初始化时调用一次。使用过滤器的目的是用来做一些过滤操作，获取我们想要获取的数据，比如：在过滤器中修改字符编码；在过滤器中修改HttpServletRequest的一些参数，包括：过滤低俗文字、危险字符等。
 
-- 拦截器
+- 拦截器  
 依赖于web框架，在实现上基于Java的反射机制，属于面向切面编程（AOP）的一种运用。由于拦截器是基于web框架的调用，因此可以使用Spring的依赖注入（DI）进行一些业务操作，同时一个拦截器实例在一个controller生命周期之内可以多次调用。但是缺点是只能对controller请求进行拦截，对其他的一些比如直接访问静态资源的请求则没办法进行拦截处理。
 
 Filter里doFilter()方法里的代码就是从多个Servlet的service()方法里抽取的通用代码，通过使用Filter可以实现更好的复用。

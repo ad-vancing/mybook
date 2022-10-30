@@ -1,3 +1,5 @@
+[内存溢出与泄漏](https://www.zhihu.com/question/40560123)
+
 ```
 JAVA_OPTS="-server -Xms2048m -Xmx2048m -Xmn512m -Xss256k -XX:PermSize=256m -XX:MaxPermSize=256m -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseCMSCompactAtFullCollection -XX:+CMSParallelRemarkEnabled -XX:CMSInitiatingOccupancyFraction=70 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${SPACEXLOG}/"
 cd /usr/local/frame/spacex

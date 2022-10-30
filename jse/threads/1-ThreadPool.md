@@ -411,27 +411,30 @@ public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
 2）线程池已经达到最大线程数，并且阻塞队列已满时。
 
 # 线程池有哪些队列？
-线程池的排队策略与BlockingQueue有关，常见的阻塞队列：  
-- ArrayBlockingQueue
-- LinkedBlockingQueue
-- SynchronousQueue
-PriorityBlockingQueue：具有优先级的无界队列，按优先级对元素进行排序。元素的优先级是通过自然顺序或 Comparator 来定义的。
+线程池的排队策略与BlockingQueue有关。  
+java.util.concurrent 中加入了 BlockingQueue 接口和一些阻塞队列类。
 
-java.util.concurrent 中加入了 BlockingQueue 接口和五个阻塞队列类。它实质上就是一种带有一点扭曲的 FIFO 数据结构。不是立即从队列中添加或者删除元素，线程执行操作阻塞，直到有空间或者元素可用————果BlockQueue是空的，这时如果有线程要从这个BlockingQueue取元素的时候将会被阻塞进入等待状态，直到别的线程在BlockingQueue中添加进了元素，被阻塞的线程才会被唤醒。同样，如果BlockingQueue是满的，试图往队列中存放元素的线程也会被阻塞进入等待状态，直到BlockingQueue里的元素被别的线程拿走才会被唤醒继续操作。
+它实质上就是一种带有一点阻塞性质的 FIFO 数据结构。  
+
+若BlockQueue是空的，这时如果有线程要从这个BlockingQueue取元素的时候将会被阻塞进入等待状态，直到别的线程在BlockingQueue中添加进了元素，被阻塞的线程才会被唤醒。同样，如果BlockingQueue是满的，试图往队列中存放元素的线程也会被阻塞进入等待状态，直到BlockingQueue里的元素被别的线程拿走才会被唤醒继续操作。
+
 ## ArrayBlockingQueue
-**有界队列**，是一个用数组实现的有界阻塞队列，按FIFO排序。最大的特点便是可以防止资源耗尽的情况发生。
+**有界队列**，是一个用数组实现的有界阻塞队列。最大的特点便是可以防止资源耗尽的情况发生。
+
 [源码分析](https://www.jianshu.com/p/3fedd6e53cf9)
 
 >队列大小和最大池大小可能需要相互折衷：使用大型队列和小型池可以最大限度地降低 CPU 使用率、操作系统资源和上下文切换开销，但是可能导致人工降低吞吐量。如果任务频繁阻塞（例如，如果它们是 I/O边界），则系统可能为超过您许可的更多线程安排时间。使用小型队列通常要求较大的池大小，CPU使用率较高，但是可能遇到不可接受的调度开销，这样也会降低吞吐量。
 
 ## LinkedBlockingQueue
-基于链表结构的阻塞队列，按FIFO排序任务，容量可以选择进行设置，**不设置的话，将是一个无边界的阻塞队列**，最大长度为Integer.MAX_VALUE，吞吐量通常要高于ArrayBlockingQuene；newFixedThreadPool线程池使用了这个队列。
+基于链表结构的阻塞队列，容量可以选择进行设置，**不设置的话，将是一个无边界的阻塞队列**，最大长度为Integer.MAX_VALUE，吞吐量通常要高于ArrayBlockingQuene；
+
+newFixedThreadPool线程池使用了这个队列。
 
 >当每个任务完全独立于其他任务，即任务执行互不影响时，适合于使用无界队列；例如，在 Web页服务器中。这种排队可用于处理瞬态突发请求，当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。
 
 对于`无界队列`来说，总是可以加入的（资源耗尽，当然另当别论）。换句说，永远也不会触发产生新的线程！corePoolSize大小的线程数会一直运行，忙完当前的，就从队列中拿任务开始运行。所以要防止任务疯长，比如任务运行的实行比较长，而添加任务的速度远远超过处理任务的时间，而且还不断增加，不一会儿就爆了。
 
-## SynchronousQueue？？？
+## SynchronousQueue
 （同步队列）一个不存储元素的阻塞队列，无界，但每个插入操作必须有另一个线程正在等待接受这个元素，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQuene，另外，SynchronousQueue的**直接提交策略**可以避免在处理可能具有内部依赖性的请求集时出现锁（因为可保证有序）。
 
 只有当线程池是无界的或者可以拒绝任务时，该队列才有实际价值。Executors.newCachedThreadPool使用了该队列。

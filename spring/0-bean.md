@@ -42,14 +42,25 @@ Spring默认。
 
 延迟初始化的bean可能被注入到一个非延迟创建且作用域为singleton的bean时会延迟配置失效。
 
+# Spring如何维护它拥有的bean
+Spring beans 是那些形成Spring应用的主干的java对象。
+
+它们被Spring IOC容器初始化，装配，和管理。
+
+这些beans通过容器中配置的元数据创建。比如，以XML文件中 的形式定义。
+
+**一个Spring Bean 的定义包含容器必知的所有配置元数据，包括如何创建一个bean，它的生命周期详情及它的依赖**。
+
+
+
 # Spring bean的生命周期
 
 ![](https://img-blog.csdnimg.cn/201911012343410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoaW5rV29u,size_16,color_FFFFFF,t_70)
 
-由构造器或工厂方法创建bean实例
-为bean的属性设置值或对其他bean的引用
-调用bean的初始化方法
-bean可以使用了
+由构造器或工厂方法创建bean实例  
+为bean的属性设置值或对其他bean的引用   
+调用bean的初始化方法  
+bean可以使用了  
 当容器关闭时，调用bean的销毁方法
 
 主要逻辑都在doCreateBean()方法中：  
@@ -58,23 +69,23 @@ populateBean() -> 属性赋值
 initializeBean() -> 初始化  
 
 
-实例化 Instantiation
-属性赋值 Populate
-初始化 Initialization
+实例化 Instantiation  
+属性赋值 Populate  
+初始化 Initialization  
 销毁 Destruction（在容器关闭时调用）  
 
 # bean生命周常用扩展点
-https://www.jianshu.com/p/1dec08d290c1
-有两个重要的bean生命周期方法，第一个是setup ， 它是在容器加载bean的时候被调用。
+https://www.jianshu.com/p/1dec08d290c1  
+有两个重要的bean生命周期方法，第一个是setup ， 它是在容器加载bean的时候被调用。  
 第二个方法是 teardown 它是在容器卸载类的时候被调用。
 
 - InstantiationAwareBeanPostProcessor(继承了BeanPostProcessor接口)作用于实例化阶段的前后。  
 postProcessBeforeInstantiation在doCreateBean之前调用，也就是在bean实例化之前调用的，英文源码注释解释道该方法的返回值会替换原本的Bean作为代理，这也是Aop等功能实现的关键点。  
 
-- BeanPostProcessor 作用于初始化阶段的前后。  
-![](https://upload-images.jianshu.io/upload_images/4558491-dc3eebbd1d6c65f4.png?imageMogr2/auto-orient/strip|imageView2/2/w/823/format/webp)
+- BeanPostProcessor 作用于初始化阶段的前后。    
+![图](https://upload-images.jianshu.io/upload_images/4558491-dc3eebbd1d6c65f4.png?imageMogr2/auto-orient/strip|imageView2/2/w/823/format/webp)
 
-- Aware类型的接口（契约接口）
+- Aware类型的接口（契约接口）  
 Aware类型的接口的作用就是让我们能够拿到Spring容器中的一些资源。基本都能够见名知意，Aware之前的名字就是可以拿到什么资源，例如BeanNameAware可以拿到BeanName，以此类推。调用时机需要注意：所有的Aware方法都是在初始化阶段之前调用的！
 
 BeanNameAware  
@@ -84,13 +95,13 @@ BeanFactoryAware
 EnvironmentAware  
 ApplicationContextAware
 
-在初始化阶段之前调用。
+在初始化阶段之前调用。  
 并不是所有的Aware接口都使用同样的方式调用!Bean××Aware都是在在初始化方法中`invokeAwareMethods(beanName, bean);`  调用的，而ApplicationContext相关的Aware都是通过BeanPostProcessor#postProcessBeforeInitialization()实现的。
 
 
 - 生命周期接口  
-InitializingBean 对应生命周期的初始化阶段，在initializeBean初始化时调用。    
-在初始化方法中可以使用Aware接口获取的资源，这也是自定义扩展Spring的常用方式。
+InitializingBean 对应生命周期的初始化阶段，在initializeBean初始化时调用。      
+在初始化方法中可以使用Aware接口获取的资源，这也是自定义扩展Spring的常用方式。  
 
 DisposableBean 对应生命周期的销毁阶段，以ConfigurableApplicationContext#close()方法作为入口，实现是通过循环取所有实现了DisposableBean接口的Bean然后调用其destroy()方法 
 
@@ -126,9 +137,10 @@ https://www.cnblogs.com/lixinjie/p/taste-spring-013.html
 构造方法 -> @PostConstruct注解的方法 -> InitializingBean的afterPropertiesSet() 方法 -> xml定义的init-method 初始化方法
 
 # BeanFactory 和 FactoryBean 的区别
-BeanFactory是一个接口，它是Spring中工厂的顶层规范，是SpringIoc容器的核心接口，它定义了getBean()、containsBean()等管理Bean的通用方法
+- BeanFactory  
+是一个接口，它是Spring中工厂的顶层规范，是SpringIoc容器的核心接口，它定义了getBean()、containsBean()等管理Bean的通用方法
 
-FactoryBean
+- FactoryBean  
 首先它是一个Bean，但又不仅仅是一个Bean。它是一个能生产或修饰对象生成的工厂Bean，类似于设计模式中的工厂模式和装饰器模式。
 它能在需要的时候生产一个对象，且不仅仅限于它自身，它能返回任何Bean的实例。
 FactoryBean表现的是一个工厂的职责。 即一个Bean A如果实现了FactoryBean接口，那么A就变成了一个工厂。

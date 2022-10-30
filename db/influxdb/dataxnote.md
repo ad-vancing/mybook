@@ -2,6 +2,7 @@
 
 > create user mike with password 'mikeops'  with all privileges;
 
+```
 {
     "job": {
         "setting": {
@@ -85,3 +86,4 @@
         }
     }
 }
+```

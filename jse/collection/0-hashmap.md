@@ -286,6 +286,9 @@ jdk8是如此，jdk7多一个条件，就是“数组当前位置存储内容不
 ![]([https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/7/26/17389eb159086f06~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/7/26/17389eb159086f06~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp))
 
 ## fail-fast 快速失效策略
+在迭代器创建之后，如果从结构上对映射进行修改，除非通过迭代器本身的 remove 方法，其他任何时间任何方式的修改，迭代器都将抛出ConcurrentModificationException。
+
+对于非并发集合，在用迭代器对其迭代时，若有其他线程修改了、增减了集合中的内容，这个迭代会马上感知到，并且立即抛出 ConcurrentModificationException 异常，而不是在迭代完成后或者某些并发的场景才报错。
 
 > 当遇到可能会诱导失败的条件时立即上报错误，快速失效系统往往被设计在立即终止正常操作过程，而不是尝试去继续一个可能会存在错误的过程。再简洁点说，就是尽可能早的发现问题，立即终止当前执行过程，由更高层级的系统来做处理。
 > 
@@ -297,6 +300,21 @@ jdk8是如此，jdk7多一个条件，就是“数组当前位置存储内容不
 
 正确的删除 Map 元素的姿势：只有一个，Iteator 的remove()方法。
 但也要注意一点，能安全删除，并不代表就是多线程安全的，在多线程并发执行时，若都执行上面的操作，因未设置为同步方法，也可能导致modCount与expectedModCount不一致，从而抛异常ConcurrentModificationException。
+
+一般来说，存在非同步的并发修改时，不可能作出任何的保证。快速失败迭代器只是尽最大努力抛出ConcurrentModificationException。因此，编写依赖于此异常的程序的做法是错误的，正确做法是：迭代器的快速失败行为应该仅用于检测程序错误。
+
+### 实现机制
+modCount 修改次数，对List内容的修改都会增加这个值，
+在迭代器初始化的过程中会将这个值赋值给迭代器的expectedModCount。
+
+```
+    try {
+    ....
+    if (modCount != expectedModCount)// judge the modCount equals with expectedModCount.
+    throw new ConcurrentModificationException();
+    ...
+    }
+```
 
 ## 源码分析
 

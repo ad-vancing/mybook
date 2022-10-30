@@ -2,17 +2,20 @@
 注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java运行时生成的动态代理类。我们通过反射获取注解时，返回的是Java运行时生成的动态代理对象。通过代理对象调用自定义注解的方法，会最终调用AnnotationInvocationHandler的invoke方法。该方法会从memberValues这个Map中索引出对应的值。而memberValues的来源是Java常量池。
 
 # 自定义注解/元注解
-https://blog.csdn.net/xsp_happyboy/article/details/80987484
-java.lang.annotation包
-@Inherited 使得所标注的注解具有继承性，表示父类的注解可被子类继承
+https://blog.csdn.net/xsp_happyboy/article/details/80987484  
+java.lang.annotation包  
 
-@Retention(RetentionPolicy.RUNTIME)或@Retention (RUNTIME)表示注解的存储级别（RetentionPolicy）有三个：源码级（SOURCE ），字节码级（SOURCE ），JVM运行级（RUNTIME）。
-RetentionPolicy.SOURCE 此级别注解只存在于源码中，会被编译器忽略，如@Override, @SuppressWarnings，@Native。
-RetentionPolicy.CLASS 此级别注解会被保存到class文件中，运行时会被JVM忽略。
+@Inherited   
+使得所标注的注解具有继承性，表示父类的注解可被子类继承
+
+@Retention(RetentionPolicy.RUNTIME)或@Retention (RUNTIME)  
+表示注解的存储级别（RetentionPolicy）有三个：源码级（SOURCE ），字节码级（SOURCE ），JVM运行级（RUNTIME）。  
+RetentionPolicy.SOURCE 此级别注解只存在于源码中，会被编译器忽略，如@Override, @SuppressWarnings，@Native。  
+RetentionPolicy.CLASS 此级别注解会被保存到class文件中，运行时会被JVM忽略。  
 RetentionPolicy.RUNTIME 此级别会被保存到class文件，运行时也可以识别，所以可以使用反射机制获取注解信息。比如@Deprecated。
 
 @Target 用来指定Annotation的可标记类型(ElementType)属性。可多种，如@Target({ElementType.TYPE, ElementType.METHOD})
-ElementType 共有八个类型：  
+>ElementType 共有八个类型：  
 ElementType.ANNOTATION_TYPE 只可以标记注解类型
 ElementType.CONSTRUCTOR 标记构造函数
 ElementType.FIELD 标记字段或属性
@@ -411,6 +414,7 @@ https://www.cnblogs.com/YuyuanNo1/p/8184003.html
 
 
 @EnableConfigurationProperties：这是一个开启使用配置参数的注解，value值就是我们配置实体参数映射的ClassType，将配置实体作为配置来源。
+
 以下为SpringBoot内置条件注解：
 @ConditionalOnBean：当SpringIoc容器内存在指定Bean的条件
 @ConditionalOnClass：当SpringIoc容器内存在指定Class的条件
@@ -426,7 +430,17 @@ https://www.cnblogs.com/YuyuanNo1/p/8184003.html
 @ConditionalOnWebApplication：当前项目是Web项目的条件
 以上注解都是元注解@Conditional演变而来的，根据不用的条件对应创建以上的具体条件注解。
 
-作者：郭大头_Gopoop
-链接：https://www.jianshu.com/p/5901da52ca09
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+# [ @condition 注解](https://www.cnblogs.com/huzi007/p/6222289.html)
+用来在不同条件下注入不同实现的
+
+[more demo](http://www.itsoku.com/article/278#menu_9)
+
+[good demo](https://yunfan.blog.csdn.net/article/details/100857814?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.pc_relevant_baidujshouduan&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.pc_relevant_baidujshouduan)
+
+[源码级](https://blog.csdn.net/hou_ge/article/details/108401072?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.pc_relevant_baidujshouduan&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.pc_relevant_baidujshouduan)
+
+[欢迎更多](https://blog.csdn.net/yusimiao/article/details/98027367)
+@ConditionalOnProperty(value = "opentracing.jaeger.enabled", havingValue = "false", matchIfMissing = false)
+https://www.thinbug.com/q/51257432
+
+[看看](https://github.com/LuckyShawn/spring-annotation/tree/master/src/main/java/com/shawn)

@@ -81,7 +81,7 @@ $ curl -b cookies.txt -c newcookies.txt http://www.baidu.com
 
 
 
-
+curl -X POS' http://localhost:8080/sp/aa-file -H accept: */* -H Content-Type: application/json -d '{h:hhhfile1={kk:ooo}}'
 
 
 

@@ -5,19 +5,20 @@ https://www.cnblogs.com/xiongmozhou/p/14991623.html
 # 安装配置debezium
 下载：
 wget https://repo1.maven.org/maven2/io/debezium/debezium-connector-postgres/1.8.1.Final/debezium-connector-postgres-1.8.1.Final-plugin.tar.gz
+
 解压压缩包：tar -zxvf debezium-connector-postgres-1.8.1.Final-plugin.tar.gz
 /Users/guanliyuan/Desktop/0318/openTool/kafka-docker/kfk/kafka_2.12-3.0.0/conn/debezium-connector-postgres
 
-Streamsets？
+Streamsets？  
 其他同步方式参考：https://jiagoushi.pro/postgresql-cdc-how-set-real-time-sync
 
 [清爽版](https://www.jianshu.com/p/a93fa3b8de3f)
 https://blog.csdn.net/qq_38626589/article/details/108217681
 
 # 原理
-https://blog.nowcoder.net/n/8ce3f3049a054d9b99bc5371910f3b9f
-它通过同步WAL记录实现从PostgreSQL抓取数据的功能
-https://blog.csdn.net/foshansuperinter/article/details/110903708
+https://blog.nowcoder.net/n/8ce3f3049a054d9b99bc5371910f3b9f  
+它通过同步WAL记录实现从PostgreSQL抓取数据的功能  
+https://blog.csdn.net/foshansuperinter/article/details/110903708  
 https://www.infoq.cn/article/lp5ucrKTI3V4aW1PWvxm
 
 逻辑解码（Logical Decoding），用于从 WAL 日志中解析逻辑变更事件
@@ -31,11 +32,11 @@ https://www.infoq.cn/article/lp5ucrKTI3V4aW1PWvxm
 WAL(Write-Ahead Logging, 预写式日志)
 
 ## 逻辑复制
-dbz 的 pg connector 从逻辑副本流中读取数据
-https://blog.csdn.net/bisal/article/details/119156524
-1、逻辑复制的前提是将数据库wal_level参数设置成logical。`select setting from pg_settings where name='wal_level';`
-2、源库上逻辑复制的用户必须具有replicatoin或superuser角色。
-3、需要发布逻辑复制的表，须配置表的REPLICA IDENTITY特性。
+dbz 的 pg connector 从逻辑副本流中读取数据  
+https://blog.csdn.net/bisal/article/details/119156524  
+1. 逻辑复制的前提是将数据库wal_level参数设置成logical。`select setting from pg_settings where name='wal_level';`
+2. 源库上逻辑复制的用户必须具有replicatoin或superuser角色。
+3. 需要发布逻辑复制的表，须配置表的REPLICA IDENTITY特性。
 逻辑复制目前仅支持数据库表逻辑复制，其它对象例如函数、视图不支持。
 逻辑复制支持DML(UPDATE、INSERT、DELETE)操作，TRUNCATE 和 DDL 操作不支持。
 需要编码器，例如 pgoutput 把WAL解释成其他应用可以理解的格式
@@ -43,10 +44,15 @@ https://blog.csdn.net/bisal/article/details/119156524
 ### Publication (发布):
 发布是从一个表或一组表中生成的一组更改，也可能被描述为更改集或复制集。每个发布只存在于一个数据库中，经创建Publication的数据库成为发布节点，一个数据库可以创建多个Publication。
 而Publication的对象只能是表，可以把需要被监控的多个表配置到一个发布中。
+
 SELECT * from pg_publication
+
 允许一次发布所有表，CREATE PUBLICATION alltables FOR ALL TABLES;
+
 CREATE PUBLICATION hhh FOR TABLE "public".station
+
 select * from pg_publication_tables where tablename='temp_tb';
+
 被复制的表上最好有主键约束；如果没有，必须执行 ALTER TABLE tablename REPLICA IDENTITY FULL;
 
 #### REPLICA IDENTITY，复制标识，共有4种配置模式
