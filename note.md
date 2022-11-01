@@ -1,4 +1,3 @@
-![](file:///Users/guanliyuan/Downloads/17221e53888f0ad6_tplv-t2oaga2asx-zoom-in-crop-mark_3024_0_0_0.awebp)
 
 # 防止数据重复提交
 https://juejin.cn/post/6850418120985837575
@@ -28,69 +27,9 @@ https://juejin.cn/post/6850418120985837575
 JHSDB 是一款基于服务性代理实现的进程外调试工具
 athas
 
->以前是以为欧洲人有现代科学的思想，才有了工业革命，其实，是因为他们殖民扩张，需要科技支撑他们的轻工业生产。所以这些问题也需要从场景需求考虑，才能深入理解其本质。
-
-# 大纲
-## jse
-- [基本数据类型](https://www.cnblogs.com/xiaobingzi/p/9683412.html)
-
-- oop的东西（封装、继承、多态）
+>
 
 
-- 集合（HashMap源码之类的）
-1）它实现了什么接口？
-2）有哪些常量？默认值
-3）怎么实现key不重复的？
-比较器
-4）什么情况下会出现快速异常，为什么？怎么解决？
-5）怎么保证线程安全？
-
-- jvm
-
-- 值引用，对象引用
-
-- classloader
-
-- 反射
-
-- 设计模式（单例、装饰器、适配器）
-
-## web
-- http 请求
-
-- tcp
-
-- 浏览器工作原理
-
-- nio
-
-## db
-- 事务
-
-- 调优
-
-- sql编写（去重、连接）
-
-## spring
-- mvc原理
-
-- spring ioc&aop
-
-- springboot
-
-- springcloud 微服务
-
-## redis
-- 分布式锁
-
-- 原理
-
-- 不弄过滤器
-
-## mq
-- 丢消息
-
-## ❓
 
 
 [想做这种gitbook](https://troywu0.gitbooks.io/spark/content/java%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%84%E8%BF%87%E7%A8%8B.html)
@@ -145,14 +84,6 @@ https://zh.wikipedia.org/wiki/AWK
 有些东西，学到不一定能用到，但到你需要用到的时候再去学，很可能就来不及了。
 
 
-[JavaFamily](https://github.com/AobingJava/JavaFamily)  
-https://github.com/rongweihe/CS_Offer
-
-https://github.com/CyC2018/CS-Notes
-  
-https://github.com/Zeb-D/my-review
-
-https://github.com/ZhongFuCheng3y/athena
 
 
 # 刷题巩固
