@@ -83,18 +83,30 @@ ArrayList **默认容量DEFAULT_CAPACITY 是 10**。
 从数组中移除元素的操作，也会导致被移除的元素以后的所有元素的向左移动一个位置。
 
 
-# LinkList
+# LinkedList
 1. 是怎么实现的（实现了哪些接口）
 2. 与linkedList的区别
 3. 什么情况下会扩容，怎么扩容的
 
-LinkList是List接口的双向链表实现，不仅实现了List的方法，同时允许元素为null
+LinkedList是List接口的双向链表实现，不仅实现了List的方法，同时允许元素为null
 获取index索引的元素时，会从链表的头部或尾部进行查找，哪边近从哪边开始。
 注意该实现是线程非安全
 
+## 查询
+ArrayList 可以支持下标随机访问，效率非常高。  
+LinkedList 由于底层不是数组，不支持通过下标访问，而是需要根据查询 index 所在的位置来判断是从头还是从尾进行遍历。
+
+LinkedList 没有实现 RandomAccess 接口，这是因为 LinkedList 存储数据的内存地址**是不连续**的，所以不支持随机访问。
+
 ## 新增元素
-LinkedList 新增元素也有两种情况，一种是直接将元素添加到队尾，一种是将元素插入到指定位置。
+LinkedList 新增元素也有两种情况，一种是直接将元素添加到队尾，一种是将元素插入到指定位置。  
 新增元素就是创建了一个新的节点，只要把last节点指向最后一个元素即可，效率很高。
+
+### ArrayList 和 LinkedList 新增元素时究竟谁快？
+当两者的起始长度是一样的情况下：    
+如果是从集合的头部新增元素，ArrayList 费时，因为需要对头部以后的元素进行复制。  
+如果是从集合的中间位置新增元素，不好说，因为 LinkedList 需要遍历。    
+如果是从集合的尾部新增元素，ArrayList 花费的时间应该比 LinkedList 少，因为数组是一段连续的内存空间，也不需要复制数组；而链表需要创建新的对象，前后引用也要重新排列。
 
 ## 删除元素
 就是移除指定的节点，同时调整前后的节点即可，但是对于随机访问元素，它需要判断当前index离头部和尾部哪个更近，然后去依次查找，效率低下。
@@ -104,22 +116,25 @@ LinkedList 新增元素也有两种情况，一种是直接将元素添加到队
 >坊间一直流传：LinkedList 的写入效率高于 ArrayList，所以在写大于读的时候非常适用于 LinkedList 。
 但是一旦写入的数据量大起来，由于LinkedList 虽然不需要复制内存，但却需要创建对象，变换指针等操作，不一定比提前预设了 数组长度的ArrayList效率高。
 
-而查询就不用多说了，ArrayList 可以支持下标随机访问，效率非常高。
-LinkedList 由于底层不是数组，不支持通过下标访问，而是需要根据查询 index 所在的位置来判断是从头还是从尾进行遍历。
+### ArrayList 和 LinkedList 删除元素时究竟谁快？
+LinkedList 在删除比较靠前和比较靠后的元素时，非常高效，但如果删除的是中间位置的元素，效率就比较低了。
+从集合头部删除元素时，ArrayList 费时；  
+从集合中间位置删除元素时，LinkedList 费时；  
+从集合尾部删除元素时，ArrayList 花费的时间比 LinkedList 少一点。
 
 # ArrayList 与linkedList的区别
-LinkedList 没有实现 RandomAccess 接口，这是因为 LinkedList 存储数据的内存地址**是不连续**的，所以不支持随机访问。
-## ArrayList 和 LinkedList 新增元素时究竟谁快？
-当两者的起始长度是一样的情况下：  
-如果是从集合的头部新增元素，ArrayList 花费的时间应该比 LinkedList 多，因为需要对头部以后的元素进行复制。  
-如果是从集合的中间位置新增元素，ArrayList 花费的时间搞不好要比 LinkedList 少，因为 LinkedList 需要遍历。  
-如果是从集合的尾部新增元素，ArrayList 花费的时间应该比 LinkedList 少，因为数组是一段连续的内存空间，也不需要复制数组；而链表需要创建新的对象，前后引用也要重新排列。
-## ArrayList 和 LinkedList 删除元素时究竟谁快？
-LinkedList 在删除比较靠前和比较靠后的元素时，非常高效，但如果删除的是中间位置的元素，效率就比较低了。
-从集合头部删除元素时，ArrayList 花费的时间比 LinkedList 多很多；
-从集合中间位置删除元素时，ArrayList 花费的时间比 LinkedList 少很多；
-从集合尾部删除元素时，ArrayList 花费的时间比 LinkedList 少一点。
+
+
+
 ## ArrayList 和 LinkedList 遍历元素时究竟谁快？
+对于ArrayList，用get(i)遍历比用foreach快！  
+对于LinkedList，用foreach(迭代器)比get(i)快(在遍历 LinkedList 时，我们要尽量避免使用 for 循环遍历)！  
+
+LinkedList 基于链表实现的，在使用 for 循环的时候，每一次 for 循环都会去遍历半个 List，所以严重影响了遍历的效率；  
+ArrayList 则是基于数组实现的，可以实现快速随机访问，所以 for 循环效率非常高。 
+LinkedList 的迭代循环遍历和 ArrayList 的迭代循环遍历性能相当，也不会太差，所以在遍历 LinkedList 时，我们要尽量避免使用 for 循环遍历。
+
+
 
 
 

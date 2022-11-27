@@ -4,6 +4,8 @@ https://www.jianshu.com/p/e136ec79235c
 
 红黑树（右子树的元素大于根节点，左子树的元素小于根节点）
 
+“平衡“，即左右子树高度几乎一致，以此来防止树退化为链表。
+
 # 红黑树和二叉平衡树区别
 https://blog.csdn.net/qfc8930858/article/details/89856274
 

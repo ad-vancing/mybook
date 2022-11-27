@@ -5,12 +5,29 @@ Maven依赖更封装
 
 sp默认嵌入式 Web 服务器（提供了将其部署到外部容器的方式）
 
-# Springboot的starter组件的结构是什么样的
-Starter组件使开发者不需要关注各种依赖库的处理，不需要具体的配置信息，由SpringBoot自动完成class类发现并加载需要的Bean。
+# SpringBoot 自动配置的原理
+springboot 可以根据 pom 中依赖的 jar 包进行自动配置，并且是在项目启动时已经进行完成的，源码就在 SpringBootApplication 里。
 
-Maven依赖、配置文件（resources/META-INF/spring.factories找到需要自动配置的类）
+## 加载配置文件 spring.factories
+项目启动时执行的初始化方法 `initialize `，调用 `setInitializers`，调用 `getSpringFactoriesInstances`，调用 `loadFactoryNames`。  
 
-# Springboot如何自定义starter
+FACTORIES RESOURCE LOCATION 这是符号常量，指的是 spring 自动配置的 jar 包下的`resources/META-INF/spring.factories`，也就是首先它加载这个文件。
+
+这个文件里面又很多auto configiuration 自动配置，boot configiuration 包名，autoconfigiurationimportfilter 类名，都是实现自动配置所实现的包和类名。
+
+spring 会使用反射机制进行实例话以及自动装配。
+
+# Springboot自动装配的时候出现bean的错误，怎么解决
+Spring基于注解的@Autowired是比较常用的自动装配注解，但是会因为个人的疏忽，SSM进行配置的时候没有将对应bean所在包给扫描进去；或者使用Boot的时候，没有放在启动类所在包及其子包下导致报错。  
+
+1. 查看@ComponentScan会不会扫到api这个包
+2. 所需要的类有没有交给Spring给管理，比如加上@Repository注解
+
+
+# SpringBoot的starter组件的结构是什么样的
+
+
+# SpringBoot如何自定义starter
 https://blog.csdn.net/wangpf2011/article/details/118634417
 
 1）构建独立的maven项目，命名如：sysuser-spring-boot-starter

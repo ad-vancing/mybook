@@ -1,3 +1,5 @@
+https://segmentfault.com/a/1190000019292741
+
 # hbase vs hive
 通过ETL工具将数据源抽取到HDFS存储；
 

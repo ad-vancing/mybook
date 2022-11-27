@@ -323,37 +323,6 @@ get方法无需加锁，由于其中涉及到的共享变量都使用volatile修
 put方法，怎么定位Segment的？
 [关于segmentShift和segmentMask](https://www.cnblogs.com/chengxiao/p/6842045.html)
 
-## LinkedHashMap 与 LRUcache
-
-LRU 是 Least Recently Used 的缩写，翻译过来就是“最近最少使用”，也就是说，LRU 缓存把最近最少使用的数据移除，让给最新读取的数据。而往往最常读取的，也是读取次数最多的，所以，利用 LRU 缓存，我们能够提高系统的 performance。
-
-```
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-public class LRUCache<K, V> extends LinkedHashMap<K, V> {
-    private final int CACHE_SIZE;
-
-    /**
-     * 传递进来最多能缓存多少数据
-     *
-     * @param cacheSize 缓存大小
-     */
-    public LRUCache(int cacheSize) {
-        // true 表示让 linkedHashMap 按照访问顺序来进行排序，最近访问的放在头部，最老访问的放在尾部。
-        super((int) Math.ceil(cacheSize / 0.75) + 1, 0.75f, true);
-        CACHE_SIZE = cacheSize;
-    }
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        // 当 map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据。
-        return size() > CACHE_SIZE;
-    }
-}
-
-```
-
 # HashMap实现原理
 
 [https://blog.csdn.net/pihailailou/article/details/82053420](https://blog.csdn.net/pihailailou/article/details/82053420)
@@ -395,6 +364,8 @@ hashMap我们知道默认初始容量是16，也就是有16个桶，那hashmap�
 # 为什么是0.75而不是其他的？
 是在时间和空间上权衡的结果。如果值较高，例如1，此时会减少空间开销，但是 hash 冲突的概率会增大，增加查找成本；而如果值较低，例如 0.5 ，此时 hash 冲突会降低，但是有一半的空间会被浪费，所以折衷考虑 0.75 似乎是一个合理的值。
 https://joonwhee.blog.csdn.net/article/details/106324537https://joonwhee.blog.csdn.net/article/details/106324537
+
+一个bucket空和非空的概率为0.5，通过牛顿二项式等数学计算，得到这个loadfactor的值为log（2），约等于0.693. 同回答者所说，可能小于0.75 大于等于log（2）的factor都能提供更好的性能
 
 # 为什么链表转红黑树的阈值是8？
 我们平时在进行方案设计时，必须考虑的两个很重要的因素是：时间和空间。对于 HashMap 也是同样的道理，简单来说，阈值为8是在时间和空间上权衡的结果
@@ -524,6 +495,35 @@ LinkedHashMap 定义了**排序模式 accessOrder**，该属性为 boolean 型�
 
 LinkedHashMap 提供了 removeEldestEntry(Map.Entry<K,V> eldest) 方法。该方法可以提供在每次添加新条目时移除最旧条目的实现程序，默认返回 false，这样，此映射的行为将类似于正常映射，即永远不能移除最旧的元素。
 
+## LinkedHashMap 与 LRUcache
+LRU 是 Least Recently Used 的缩写，翻译过来就是“最近最少使用”，也就是说，LRU 缓存把最近最少使用的数据移除，让给最新读取的数据。而往往最常读取的，也是读取次数最多的，所以，利用 LRU 缓存，我们能够提高系统的 performance。
+
+```
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class LRUCache<K, V> extends LinkedHashMap<K, V> {
+    private final int CACHE_SIZE;
+
+    /**
+     * 传递进来最多能缓存多少数据
+     *
+     * @param cacheSize 缓存大小
+     */
+    public LRUCache(int cacheSize) {
+        // true 表示让 linkedHashMap 按照访问顺序来进行排序，最近访问的放在头部，最老访问的放在尾部。
+        super((int) Math.ceil(cacheSize / 0.75) + 1, 0.75f, true);
+        CACHE_SIZE = cacheSize;
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        // 当 map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据。
+        return size() > CACHE_SIZE;
+    }
+}
+
+```
 
 # TreeMap
 [https://www.cnblogs.com/skywang12345/p/3310928.html](https://www.cnblogs.com/skywang12345/p/3310928.html)

@@ -49,8 +49,8 @@ Setter注入时在bean实例创建完成后执行的。
 
 ## 循环依赖！！！！
 构造函数注入无法解决。  
-解决这种困境的方式是使用Setter依赖。
-更多参考：https://blog.csdn.net/qq_41907991/article/details/107164508?spm=a2c6h.12873639.article-detail.6.31c61f31hrtzMT  
+解决这种困境的方式是使用Setter依赖。  
+[参考](https://blog.csdn.net/qq_41907991/article/details/107164508?spm=a2c6h.12873639.article-detail.6.31c61f31hrtzMT)  
 
 # 自动装配
 不是用注解的意思哟。  
@@ -141,3 +141,10 @@ https://www.cnblogs.com/java-chen-hao/p/11113340.html
 https://blog.csdn.net/u011043551/article/details/79675363
 
 # Spring动态加载数据源
+
+# IOC 容器的初始化
+1. Resource定位
+1. BeanDefinition的载入
+1. BeanDefinition的注册
+
+https://www.cnblogs.com/tanghaorong/p/13497223.htm

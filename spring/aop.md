@@ -60,6 +60,11 @@ ProxyFactoryBean提供了如下信息：
 ```
 https://blog.csdn.net/luanlouis/article/details/51155821
 
+>看Spring的代码有个小技巧：如果你要研究一个功能，可以从开启这个功能的Enable注解开始看。Spring的很多功能都是通过Enable注解开启的，所以这些注解肯定和这些功能相关。
+可以从@EnableAspectJAutoProxy这个注解开始着手  
+[窥探](https://www.cnblogs.com/54chensongxia/p/13141362.html)
+
+
 # 在Spring中的AOP有6种增强方式（Spring支持哪几种切片）
 
 1、Before 前置增强  

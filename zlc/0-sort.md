@@ -1,4 +1,4 @@
-排序算法系列目录说明
+十大排序算法  
 - 冒泡排序（Bubble Sort）
 - 插入排序（Insertion Sort）
 - 希尔排序（Shell Sort）
@@ -10,9 +10,32 @@
 - 桶排序（Bucket Sort）
 - 基数排序（Radix Sort）
 
-各个排序算法随着数据集的增大，时间消化程度
-![](https://img-blog.csdn.net/20160225154019089?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+https://blog.csdn.net/zmd_23/article/details/108791825
 
+https://www.cnblogs.com/cashew/p/10512279.html
+
+各个排序算法随着数据集的增大，时间消化程度
+![图](https://img-blog.csdn.net/20160225154019089?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+# 算法选择
+1. 数据规模  
+规模小时，直接插入排序或冒泡排序。
+2. 数据类型  
+全是正数，桶排序。
+3. 数据已有的顺序  
+大部分排好了的，不选快排。
+
+# Collections.sort方法使用的是哪种排序方法
+调用了Arrays.sort  
+Arrays.sort()并不是只有快排，他是根据数据量选择排序算法，源码里还有timsort，而且他的快排是双轴快排
+
+
+Integer.compare(a, b)!
+
+# TimSort的排序法，也就是增强型的归并排序法
+https://sikasjc.github.io/2018/07/25/timsort/
+
+# Redis的 SortedSet 排序set怎么实现
 
 # 快排
 https://www.runoob.com/w3cnote/quick-sort-2.html  
@@ -38,6 +61,10 @@ https://blog.csdn.net/z275598733/article/details/101459629
 # 归并排序 MERGE-SORT
 K-way merge 多路归并  
 从2路到多路（k路），增大k可以减少外存信息读写时间。
+
+https://www.runoob.com/w3cnote/merge-sort.html
+
+![图](https://ask.qcloudimg.com/http-save/yehe-2890902/vzanio11bs.png?imageView2/2/w/1620)
 
 速度仅次于快排，内存少的时候使用，可以进行并行计算的时候使用。  
 1、选择相邻两个数组成一个有序序列。  
@@ -88,3 +115,17 @@ https://www.jianshu.com/p/356604b8903f
 - 情况二：
 排序值范围大，如1-1亿，可以考虑基数排序。
 
+一百万个数求最大100个数，和最小100个数
+https://blog.csdn.net/cslbupt/article/details/65935577
+
+# 堆&堆排序
+一般用数组来表示堆，下标为 i 的结点的父结点下标为(i-1)/2；其左右子结点分别为 (2i + 1)、(2i + 2)  
+https://zhuanlan.zhihu.com/p/124885051  
+[有个视频1](https://www.cs.usfca.edu/~galles/visualization/HeapSort.html)  
+[有个视频2](https://vdn.vzuu.com/SD/3bb38dfe-236a-11eb-8039-a6caf32b14c9.mp4?disable_local_cache=1&bu=078babd7&c=avc.0.0&f=mp4&expiration=1668442767&auth_key=1668442767-0-0-7a62b65a67907eabdd5598dc10d3b66f&v=ali&pu=078babd7)
+
+直接选择排序中，为了从R[1…n]中选择最大记录，需比较n-1次，然后从R[1…n-2]中选择最大记录需比较n-2次。  
+事实上这n-2次比较中有很多已经在前面的n-1次比较中已经做过，而树形选择排序恰好利用树形的特点保存了部分前面的比较结果，因此可以减少比较次数。  
+对于n个关键字序列，最坏情况下每个节点需比较log2(n)次，因此其最坏情况下时间复杂度为nlogn。
+
+堆排序为不稳定排序，不适合记录较少的排序。

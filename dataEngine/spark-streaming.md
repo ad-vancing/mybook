@@ -19,3 +19,6 @@ Spark Streaming中有四个join分别是join、leftOuterJoin、rightOuterJoin、
 
 由于，这两个流的数据不一定是同时到达，需要对数据做缓存处理 redis
 https://blog.csdn.net/qq_41858402/article/details/109256977
+
+# structured streaming
+https://blog.csdn.net/weixin_45366499/article/details/111545564

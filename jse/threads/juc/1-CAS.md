@@ -7,8 +7,13 @@ https://www.jianshu.com/p/da9d051dcc3d
 AtomicBoolean，AtomicInteger，AtomicLong以及 Lock 相关类等底层就是用 CAS实现的，在一定程度上性能比 synchronized 更高。
 
 # cas 是怎么实现的
-CAS底层通过Unsafe类实现原子性操作。
-getAndIncrement采用了CAS操作，每次从内存中读取数据然后将此数据和+1后的结果进行CAS操作，如果成功就返回结果，否则重试直到成功为止。而compareAndSet利用JNI来完成CPU指令的操作。
+CAS算法需要3个操作数：内存地址V，旧预期值A，将要更新的目标值B。
+CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将内存地址V的值修改为B，否则就什么都不做。整个比较并替换的操作是一个原子操作。
+
+## "比较并替换的操作"怎么做到是一个原子操作 
+CAS底层通过Unsafe类实现原子性操作。  
+getAndIncrement采用了CAS操作，每次从内存中读取数据然后将此数据和+1后的结果进行CAS操作，如果成功就返回结果，否则重试直到成功为止。  
+而compareAndSet利用JNI来完成CPU指令的操作。
 ```
 public final int getAndIncrement() {  
         for (;;) {  

@@ -226,7 +226,7 @@ select colname … from A表 Left join B表 on a.id = b.id where b.id is null
 
 LEFT JOIN A表为驱动表，INNER JOIN MySQL会自动找出那个数据少的表作用驱动表，RIGHT JOIN B表为驱动表
 
-表关联查询时务必遵循 **小表驱动大表** 原则！
+表关联查询时务必遵循**小表驱动大表**原则！
 
 j**oin on的字段，类型要一致，demo：[https://blog.csdn.net/yongcto/article/details/44083095](https://blog.csdn.net/yongcto/article/details/44083095)**
 
@@ -247,7 +247,7 @@ j**oin on的字段，类型要一致，demo：[https://blog.csdn.net/yongcto/art
 
 set global slow_query_log = on;
 
-**2、临时设置慢查询时间临界点**  查询时间高于这个临界点的都会被记录到慢查询日志中（如果需要长时间开启，则需要更改mysql配置文件）。
+**2、临时设置慢查询时间临界点**查询时间高于这个临界点的都会被记录到慢查询日志中（如果需要长时间开启，则需要更改mysql配置文件）。
 
 set long_query_time = 1;
 

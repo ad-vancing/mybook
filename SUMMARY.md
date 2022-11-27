@@ -1,6 +1,6 @@
 bui# Summary
 
-- [中间件](zjj/kafka/0-kafka-qa.md)
+- [中间件](zjj/kafka/0-mq.md)
   - [mq](zjj/kafka/0-mq.md)
     - [Kafka](zjj/kafka/0-kafka-qa.md)
     - [Kafka-shell](zjj/kafka/0-kafka-shell.md)
@@ -10,11 +10,13 @@ bui# Summary
     - [集群](zjj/redis/0-cluster.md)
     - [锁](zjj/redis/0-redisLock.md)
     - [数据结构与内存管理](zjj/redis/0-senior1.md)
+  - [Zk](zjj/zk/0-qa.md)      
+  - [ng](zjj/ng.md)
+    
 
 - [分布式](分布式/qa.md)
   - [ConsHash](分布式/0-consHash.md)
   - [Rpc](分布式/1-rpc.md)
-  - [Zk](zjj/zk/0-qa.md)    
   
 - [dataEngine](dataEngine/0-hdfs.md)
   - [Hdfs](dataEngine/0-hdfs.md)
@@ -67,6 +69,7 @@ bui# Summary
 - [网络与系统设计](net/1-系统相关.md)
  - [http](net/0-http.md)  
  - [Tcp](net/0-tcp.md)  
+ - [Ip](net/0-ip.md)  
 
 
 - [Linux](linux/0-qa.md)
@@ -79,7 +82,6 @@ bui# Summary
   - [Hadoop Shell](linux/hadoop_shell.md)
   - [K8s Hook](linux/k8s-hook.md)
   - [K8s](linux/k8s.md)
-  - [Ng](linux/ng.md)
   - [Sed Awk ](linux/sed_awk_.md)
   - [Shell](linux/shell.md)
   - [git](linux/0-git.md)
@@ -110,7 +112,6 @@ bui# Summary
   - [Fresh](jse/0-fresh.md)
   - [Oop](jse/0-oop/note.md)
     - [Note Oop](jse/0-oop/note-oop.md)
-  - [Proxy](jse/0-proxy.md)
   - [Reflect](jse/0-reflect.md)
   - [字符串编码](jse/0-字符串编码.md)
   - [Collection](jse/collection/0-qa.md)
@@ -118,6 +119,7 @@ bui# Summary
     - [ConcurrentHashMap](jse/collection/0-ConcurrentHashMap.md)
     - [Enum](jse/collection/0-enum.md)
     - [Hashmap](jse/collection/0-hashmap.md)
+    - [优先级队列](jse/collection/1-priorityQueue.md)
   - [DesignPattern](jse/designPattern/0-agent.md)
     - [Adapter](jse/designPattern/0-adapter.md)
     - [Factory](jse/designPattern/0-factory.md)

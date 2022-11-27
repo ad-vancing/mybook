@@ -10,23 +10,32 @@ ReentrantReadWriteLock 实现了 ReadWriteLock 接口：读写锁分成两个锁
 
 StampedLock： stampedLock 是 JDK8 引入的新的锁机制，可以简单认为是读写锁的一个改进版本，读写锁虽然通过分离读和写的功能使得读和读之间可以完全并发，但是读和写是有冲突的，如果大量的读线程存在，可能会引起写线程的饥饿。stampedLock 是一种乐观的读策略，使得乐观锁完全不会阻塞写线程。
 
+Lock是一个接口，使用实现了该接口的类 `Lock lock = new ReentrantLock()`。  
+加锁，和释放锁都是在 `try-finally`。这样的好处是在任何异常发生的情况下，都能保障锁的释放。
+
+Lock类提供了丰富的加锁的方法和对加锁的情况判断。主要有：  
+- 实现锁的公平：按照线程加锁的顺序来获取锁
+- 获取当前线程调用lock的次数，也就是获取当前线程锁定的个数：当前线程调用lock方法的次数。一般一个方法只会调用一个lock方法，但是有可能在同步代码中还有调用了别的方法，那个方法内部有同步代码。这样，getHoldCount()返回值就是大于1。
+- 获取等待锁的线程数：getQueueLength()方法来得到等待锁释放的线程的个数。
+- 查询指定的线程是否等待获取此锁定：hasQueuedThread(Thread thread)查询该Thread是否等待该lock对象的释放。
+- 查询是否有线程等待获取此锁定：是否有线程在等待锁释放即hasQueuedThreads()。
+- 查询当前线程是否持有锁定：是否当前线程持有锁即isHeldByCurrentThread()。
+- 判断一个锁是不是被线程持有：判断一个锁是不是被一个线程持有，即isLocked()。
+- 加锁时如果中断则不加锁，进入异常处理
+- 尝试加锁，如果该锁未被其他线程持有的情况下成功：`tryLock()`方法来进行尝试加锁，只有该锁未被其他线程持有的基础上，才会成功加锁。
+- 配合Condition类来实现wait/notify机制。
+
 # Synchronized和Lock的区别
-Lock类实际上是一个接口，我们在实例化的时候实际上是实例化实现了该接口的类Lock lock = new ReentrantLock();。
-加锁，和释放锁都是在try-finally。这样的好处是在任何异常发生的情况下，都能保障锁的释放。
+- Synchronized 是Java的一个关键字，而Lock是java.util.concurrent.Locks 包下的一个接口；
+- Synchronized 使用过后，会自动释放锁，而Lock需要手动上锁、手动释放锁。（在 finally 块中）
+- Lock提供了更多的实现方法，而且 可响应中断、可定时， 而synchronized 关键字不能响应中断；
+- synchronized关键字是非公平锁，即，不能保证等待锁的那些线程们的顺序，而Lock的子类ReentrantLock默认是非公平锁，但是可通过一个布尔参数的构造方法实例化出一个公平锁；
+- synchronized无法判断，是否已经获取到锁，而Lock通过tryLock()方法可以判断，是否已获取到锁；
+- Lock可以通过分别定义读写锁提高多个线程读操作的效率。
+- 二者的底层实现不一样：synchronized是同步阻塞，采用的是悲观并发策略；Lock是同步非阻塞，采用的是乐观并发策略（底层基于volatile关键字和CAS算法实现）
 
-Lock类提供了丰富的加锁的方法和对加锁的情况判断。主要有
-
-实现锁的公平：按照线程加锁的顺序来获取锁
-获取当前线程调用lock的次数，也就是获取当前线程锁定的个数：当前线程调用lock方法的次数。一般一个方法只会调用一个lock方法，但是有可能在同步代码中还有调用了别的方法，那个方法内部有同步代码。这样，getHoldCount()返回值就是大于1。
-获取等待锁的线程数：getQueueLength()方法来得到等待锁释放的线程的个数。
-查询指定的线程是否等待获取此锁定：hasQueuedThread(Thread thread)查询该Thread是否等待该lock对象的释放。
-查询是否有线程等待获取此锁定：是否有线程在等待锁释放即hasQueuedThreads()。
-查询当前线程是否持有锁定：是否当前线程持有锁即isHeldByCurrentThread()。
-判断一个锁是不是被线程持有：判断一个锁是不是被一个线程持有，即isLocked()。
-加锁时如果中断则不加锁，进入异常处理
-尝试加锁，如果该锁未被其他线程持有的情况下成功：tryLock()方法来进行尝试加锁，只有该锁未被其他线程持有的基础上，才会成功加锁。
-
-配合Condition类来实现wait/notify机制。
+ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁。它的性能比较好也是因为避免了使线程进入内核态的阻塞状态。  
+Synchronized是悲观锁，在jdk1.8之后，加入了偏向锁，轻量级锁（自旋锁），性能得到了极大优化。
 
 # 公平锁和非公平锁的区别
 - 公平锁

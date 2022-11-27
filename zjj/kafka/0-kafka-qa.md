@@ -4,6 +4,8 @@ https://kafka.apachecn.org/intro.html
 
 https://github.com/apache/kafka/
 
+[残漏补缺](https://mp.weixin.qq.com/s?__biz=MzIzNTIzNzYyNw%3D%3D&chksm=e8eb7b04df9cf2121a98984fae0207d422b9d643a2c3ff4d7c91cabfe2e8b4d530a62c376035&idx=1&lang=zh_CN&mid=2247484048&scene=21&sn=2de06942948b02842fd042e7783cbc61&token=267415244#wechat_redirect)
+
 # 为什么使用 Kafka
 Kafka 是一款开源、轻量级、可分区、可备份、高吞吐量的基于zookeeper的分布式流平台的发布订阅消息系统。能很好地处理活跃的流数据。使得数据在各个子系统中高性能、低延迟地不停流转。
 
@@ -52,6 +54,8 @@ partition的表现形式就是一个一个的文件夹，命名规则是“主�
 - 副本  
 每个分区的多个副本需要保证数据的一致性，kafka会选择一个副本作为leader副本，其他作为follower副本。  
 **只有leader副本负责处理客户端的读写请求（“Read-your-writes）**，follower副本**异步地**从leader副本拉取数据。
+
+对比：RabbitMQ 一个 queue 的数据都是放在一个节点里的，镜像集群下，也是每个节点都放这个 queue 的完整数据。
 
 - 偏移量offset  
 副本被抽象成一个日志对象，消息被追加到`.log`文件尾部，同时每条消息在日志文件中的位置都会对应一个按序递增的偏移量。  
@@ -105,6 +109,15 @@ kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群�
 这些文件都位于同一文件夹下面，该文件夹的命名规则为：topic 名称-分区号(从 0 开始的)。   
 
 [参考](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488841&idx=1&sn=2ea884012493403ab45b450271708fc8&source=41#wechat_redirect)
+
+## 分段存储的好处
+partition将数据记录到.log文件中，为了避免文件过大影响查询效率，将文件分段处理
+
+记录消息到.log文件中的同时，会记录消息offset和物理偏移地址的映射作为索引，提升查找性能；
+
+这个索引并不是按消息的顺序依次记录的，而是每隔一定字节的数据记录一条索引，降低了索引文件的大小
+
+kafka查找消息时，只需要根据文件名和offset进行**二分查找**，找到对应的日志分段后，查找.index文件找到物理偏移地址，然后查.log读取消息内容
 
 ## kafka是按照什么规则将消息划分到各个分区的
 如果producer指定了要发送的目标分区，消息自然是去到那个分区；

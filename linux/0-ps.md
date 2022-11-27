@@ -1,7 +1,9 @@
+```
 `ps -ef|head -n 10` 标准输出
 `ps aux|head -n 10`  BSD syntax
 x 就是打印 BSD 风格，-f 同样也是打印格式的问题。
-```
+ps -axjf 列出类似程序树的程序显示
+
 STAT              状态
 
           R：runing 运行态 

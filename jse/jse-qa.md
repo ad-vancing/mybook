@@ -1,3 +1,16 @@
+# try {}里有一个return语句，那么紧跟在这个try后的finally {}里的code会不会被执行?
+return 语句先执行，finally 语句后执行，但 return 并不是让函数马上返回，而是 return 语句执行后，将把返回结果放置进函数栈中，此时函数并不是马上返回，它要执行 finally 语句后才真正开始返回！但此时会出现两种情况：
+- 如果finally中也有return，则会直接返回并终止程序，函数栈中的return不会被完成！；
+- 如果finally中没有return，则在执行完finally中的代码之后，会将函数栈中的try中的return的内容返回并终止程序；
+
+# Error与Exception的区别
+- Error类和Exception类都是继承Throwable类
+- Error（错误）是系统中的错误，如 oome、stackoverflowerror
+- Exception（异常）表示程序可以处理的异常，可以捕获且可能恢复
+- Exception又分为(1)CheckedException：（编译时异常） 需要用try——catch显示的捕获，如IOExecption;(2)UnCheckedException（RuntimeException）：（运行时异常）不需要捕获，如NullpointerException：空指针异常、ndexOutOfBoundsException：索引超出边界异常
+
+![](https://img-blog.csdnimg.cn/20200218210033769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5ODU2MQ==,size_16,color_FFFFFF,t_70)
+
 # Java中switch都可以支持哪些数据类型
 
 在JDK1.5之前,switch循环只支持**byte short char int**四种数据类型；
@@ -98,6 +111,11 @@ hashCode方法的主要作用是为了配合基于散列的集合一起正常运
 然而我们经常看到对于对象（数组，类，接口）的传递似乎有点像引用传递，可以改变对象中某个属性的值。
 
 但是不要被这个假象所蒙蔽，**实际上这个传入函数的值是对象引用的拷贝，即传递的是引用的地址值，所以还是按值传递。**
+
+# java中String s = new String("abc")创建了几个对象
+是"abc"本身就是文字池中的一个对象，在运行 new String()时，把文字池即pool中的字符串"abc"复制到堆中，并把这个对象的应用交给s，所以创建了两个String对象，一个在pool 中，一个在堆中。
+
+[参考](https://blog.csdn.net/luzhensmart/article/details/105679905)
 
 # Java序列化的方式
 将数据对象转换为二进制流的过程称为对象的序列化（Serialization）。反之，将二进制流恢复为数据对象的过程称为反序列化（Deserialization）。  

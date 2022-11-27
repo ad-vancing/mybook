@@ -1,3 +1,7 @@
+# hiveSQL转换成MapReduce的过程
+HiveSQL ->AST(抽象语法树) -> QB(查询块) ->OperatorTree（操作树）->优化后的操作树->mapreduce任务树->优化后的mapreduce任务树
+
+
 # hive 服务优化
 [Hive调优技巧最佳实践](https://zhuanlan.zhihu.com/p/296254978)
 

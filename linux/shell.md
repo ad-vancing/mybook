@@ -49,4 +49,11 @@ cat /dev/null > /etc/test.txt
 [admin@localhost]$ date -d@1323004944 -u
 2011年12月 04日 星期日13:22:24UTC 
 ```
+
+# 网络相关
+- ss 是 Socket Statistics 的缩写。  
+ss 命令可以用来获取 socket 统计信息，它显示的内容和 netstat 类似。  
+查看主机监听的端口`$ ss -tnl`
+
+
     
