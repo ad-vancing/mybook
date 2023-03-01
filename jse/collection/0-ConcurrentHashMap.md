@@ -13,6 +13,8 @@ size 操作用于统计元素的数量，必须统计每个 Segment 的大小然
 
 ![](https://img-blog.csdnimg.cn/img_convert/4d500238dcce0acb37ea591792e11d81.png)
 # JDK8 的 ConcurrentHashMap 原理？
+双数组+链表的结构
+
 jdk8放弃了分段锁而采用了Node锁，降低了锁的粒度，提高了性能，并使用CAS操作来确保Node的一些操作的原子性，取代了锁。
 
 CAS + Synchronized  

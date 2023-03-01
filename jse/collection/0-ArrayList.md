@@ -64,7 +64,7 @@ ArrayList **默认容量DEFAULT_CAPACITY 是 10**。
 开发者可以调用` ensureCapacity(int minCapacity)` 操作来增加 ArrayList 实例的容量。
 在存储元素等操作过程中，如add(E e)，遇到容量不足程序会内部调用private void方法 `ensureCapacityInternal(int minCapacity)`实现扩容。
 
-数组进行扩容时，**会将老数组中的元素重新拷贝一份到新的数组中**，这种操作的代价是很高的，因此在实际使用时，我们应该尽量避免数组容量的扩张。
+数组进行扩容时，**会将老数组中的元素重新拷贝一份到新的数组中(复制的地址，也就是引用，属于浅拷贝)**，这种操作的代价是很高的，因此在实际使用时，我们应该尽量避免数组容量的扩张。
 当我们可预知要保存的元素的多少时，要在构造 ArrayList 实例时，就指定其容量，以避免数组扩容的发生。
 
 >扩容因子k为何是1.5？?
@@ -163,3 +163,6 @@ CopyOnWriteArrayList 是 ArrayList 的线程安全版本，也是大名鼎鼎的
 在读操作时不加锁，跟ArrayList类似；在写操作时，复制出一个新的数组，在新数组上进行操作，操作完了，将底层数组指针指向新数组。适合使用在读多写少的场景。
 
 例如 add(E e) 方法的操作流程如下：使用 ReentrantLock 加锁，拿到原数组的length，使用 Arrays.copyOf 方法从原数组复制一个新的数组（length+1），将要添加的元素放到新数组的下标length位置，最后将底层数组指针指向新数组。
+
+
+# CopyOnWriteArrayList

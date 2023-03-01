@@ -1,4 +1,9 @@
+[分布式服务框架dubbo 原理](https://blog.csdn.net/xiaoliuliu2050/article/details/55259307)  
 
+[dubbo 的工作原（面试）理](https://github.com/doocs/advanced-java/blob/master/docs/distributed-system/dubbo-operating-principle.md)
+
+[使用](https://blog.csdn.net/u010297957/article/details/51702076)  
+http://vence.github.io/2018/03/30/dubbo-info/
 https://louluan.blog.csdn.net/article/details/19557465?spm=1001.2014.3001.5502
 
 # RMI（Remote Method Invocation）与代理模式

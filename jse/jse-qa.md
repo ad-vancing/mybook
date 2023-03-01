@@ -1,3 +1,11 @@
+# StringBuilder和StringBuffer使用单线程执行，有区别吗
+String、StringBuffer是线程安全的，StringBuilder是线程不安全的
+
+如果程序是单线程的使用StringBuilder效率高，如果是多线程使用StringBuffer或者String    
+
+偏向锁？
+
+
 # try {}里有一个return语句，那么紧跟在这个try后的finally {}里的code会不会被执行?
 return 语句先执行，finally 语句后执行，但 return 并不是让函数马上返回，而是 return 语句执行后，将把返回结果放置进函数栈中，此时函数并不是马上返回，它要执行 finally 语句后才真正开始返回！但此时会出现两种情况：
 - 如果finally中也有return，则会直接返回并终止程序，函数栈中的return不会被完成！；
