@@ -1,0 +1,1 @@
+Typescript 是微软2012年推出的一种编程语言，属于 JavaScript 的超集，可以编译为 JavaScript 执行。 它的最大特点就是支持强类型和 ES6 class。

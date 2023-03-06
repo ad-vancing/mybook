@@ -1,10 +1,40 @@
 https://blog.csdn.net/weixin_43570367/article/details/103809848
 
 # 分布式集群下如何做到唯一序列号
-使用Redis来生成ID。这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。
-Redis集群来获取更高的吞吐量。假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。
 
-https://blog.csdn.net/riemann_/article/details/88858608#commentBox
+- 取当前毫秒数
+    并发量超过1000，会生成重复的ID
+
+- 针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。  
+    比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。
+    给字段设置auto_increment_increment和auto_increment_offset
+    使用下列SQL读写MySQL得到ID号。
+    ```sql
+    begin;
+    REPLACE INTO Tickets64 (stub) VALUES ('a');
+    SELECT LAST_INSERT_ID();
+    commit;
+    ```
+    [参考](https://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/)
+    缺点：水平扩展比较困难，数据库压力很大
+    Leaf-segment数据库方案：不同业务前缀区分+
+  
+  
+
+- 使用 uuid 怎么解决有序？
+    NHibernate在其主键生成方式中的Comb算法（combined guid/timestamp）
+    
+- 使用Redis来生成ID。
+    这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。
+    Redis集群来获取更高的吞吐量。
+    假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。
+
+- Twitter的 snowflake 算法，“1+41+10+12”的方式组装ID号  
+    Leaf-snowflake 优化方案，利用Zookeeper持久顺序节点的特性
+
+- 其他如利用zookeeper的znode生成唯一ID，MongoDB的ObjectId 通过“时间+机器码+pid+inc”共12个字节，通过4+3+2+3的方式最终标识成一个24长度的十六进制字符
+
+
 # 分布式事务的原理，如何使用分布式事务
 
 
