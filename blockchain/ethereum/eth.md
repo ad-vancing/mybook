@@ -10,6 +10,9 @@ https://etherscan.io/opcode-tool
 [gas price]()
 wei
 gwei
-gas price * gas = tatol coat
+gas price * gas = total cost
+
+
+https://ethereum.org/zh/developers/docs/
 
 

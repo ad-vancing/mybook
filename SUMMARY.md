@@ -183,3 +183,6 @@ bui# Summary
 - [Mbp](mbp/note.md)
   - [Idea](mbp/idea.md)
   - [其他工具](mbp/tool.md)
+  
+- [aws](aws/note.md)
+  - [AWS Cloud Practitioner](aws/class1/clp.md)  
