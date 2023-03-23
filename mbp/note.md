@@ -18,3 +18,6 @@ hive： /usr/local/hadoop/docker-hive
 实习：
 https://www.uxuqiu.com/home.php?mod=space&do=home&view=all&order=dateline&page=2
 https://nowpick.nowcoder.com/w/intern/center?recruitType=2
+
+# sublime
+[Sublime 将指定字符替换成换行符, 或者将换行符替换为指定字符](https://blog.csdn.net/chenchuwai/article/details/117702568)

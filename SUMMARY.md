@@ -186,3 +186,5 @@ bui# Summary
   
 - [aws](aws/note.md)
   - [AWS Cloud Practitioner](aws/class1/clp.md)  
+    - [1](aws/class1/clp1.md)  
+    - [2](aws/class1/clp2.md)  

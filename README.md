@@ -31,7 +31,7 @@ https://github.com/MoRan1607/BigDataGuide
 
 [中文独立博客列表](https://github.com/timqian/chinese-independent-blogs)
 
-
+[IT SKILLS AND SALARY REPORT](https://www.globalknowledge.com/us-en/content/salary-report/it-skills-and-salary-report/#gref)
 
 
 
