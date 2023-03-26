@@ -71,15 +71,26 @@ Each region can be connected to each other region through a high speed fiber net
 
 And each region is isolated from every other region .
 
+AWS Regions are independent from one another. This means that your data is not replicated from one Region to another, without your explicit consent and authorization.
+
+use Region-scoped, managed services. These services come with availability and resiliency built in.
+
 ## Which region do you pick? 
 four key factors to choose a region: compliance, proximity, feature availability, and pricing.
+
+compliance, latency, price（ Instead of charging a flat rate worldwide, AWS charges based on the financial factors specific to the location）, and service availability.
  
 ## availability zone  for high availability and disaster proof 
 AWS region consists of multiple, isolated, and physically separate availability zones within a geographic region.
 
+An AZ consists of one or more data centers with redundant power, networking, and connectivity.
+
 Each availability zone is one or more discrete data centers with redundant power, networking, and connectivity.
 
+some services ask you to specify an AZ. With these services, you are often responsible for increasing the data durability and high availability of these resources.
+
 Recommend you run across at least two availability zones in a region.
+
 
 ## Amazon CloudFront, cdn
 Caching copies of data closer to the customers all around the world uses the concept of content delivery networks or CDNs.
