@@ -1,3 +1,4 @@
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202304122036827.png)
 ```
 
 while(diligentEnough == true && strugglingEnough == true){

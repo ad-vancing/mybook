@@ -1,18 +1,20 @@
 
-[Ethereum](https://ethereum.org/en/developers/) should be the first blockchain ecology that novice developers of Dapps learn.   
-So there are two main programming languages, [Solidity](https://docs.soliditylang.org/en/v0.8.19/) and JavaScript.   
-Learn Solidity primarily to make smart contracts, and learn JavaScript to test them.
+[Ethereum](https://ethereum.org/en/developers/) , the first blockchain ecology that novice developers of Dapps learn.   
 
-[gas](https://ethgasstation.info/)  
-[不同的操作消耗不同](https://github.com/crytic/evm-opcodes)  
-https://etherscan.io/opcode-tool
+https://github.com/ethereum
 
-[gas price]()
-wei
-gwei
-gas price * gas = total cost
+[etherscan explorer](etherscan.io)
 
+# dapp
+[dapp应用商店](https://dappradar.com/)
 
-https://ethereum.org/zh/developers/docs/
+[difi](https://defillama.com/)
 
+# dev target
 
+1. [Minting NFTs](https://www.liaoxuefeng.com/article/1461241857966113)
+2. [Creating cryptocurrencies](https://learnblockchain.cn/2018/01/12/create_token/)  
+  [funny](https://twitter.com/loopifyyy/status/1654874026815225859?s=46) 
+3. Making decentralized application     
+  [web3js-example-react-app](https://github.com/ChainSafe/web3js-example-react-app)
+  [create-eth-appexamples](https://github.com/paulrberg/create-eth-app)

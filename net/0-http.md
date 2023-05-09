@@ -1,3 +1,6 @@
+# preface
+[中国十大骨干网](https://mp.weixin.qq.com/s/oQiyZ7aZGDBnX7gMENG3rg)
+
 # 输入一个网址，在浏览器中会发生什么 《图解HTTP》
 1. 浏览器数据封包
 2. 浏览器查找域名的IP地址（数据链路层解析 IP 与 mac 地址的映射）
@@ -188,3 +191,5 @@ Internet Control Message Protocol 互联网控制报文协议
 
 # 预检请求
 OPTIONS请求，用于向服务器请求权限信息。预检请求被成功响应后，才会发出真实请求，携带真实数据。
+
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202305061840544.png)

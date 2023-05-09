@@ -171,6 +171,9 @@ bui# Summary
 
 - [blockchain](blockchain/blockchain.md) 
   - [ethereum](blockchain/ethereum/eth.md) 
+    - [solidity](blockchain/ethereum/solidity1.md) 
+    - [transaction](blockchain/ethereum/transaction.md) 
+    - [dev2](blockchain/ethereum/z2_dev.md) 
   
   
 - [Bench](bench/开源项目.md)
