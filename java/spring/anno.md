@@ -173,7 +173,7 @@ xml配置：
     @Value("#{configProperties['jdbc.username']}")
     private String userName;
 ```
-
+```
 1).注入普通字符
 
 @Value("Michael")
@@ -219,7 +219,7 @@ book.name=《三体》
 
 @PropertySource("classpath:com/it/test.properties")
 ③ 还需配置一个PropertySourcesPlaceholderConfigurer的bean。
-
+```
 # Bean的属性注解
 @Scope 设置Spring容器如何新建Bean实例（方法上，得有@Bean）
 
@@ -246,7 +246,7 @@ GlobalSession（给每一个 global http session新建一个Bean实例）
 在Spring MVC 中，控制器Controller 负责处理由DispatcherServlet 分发的请求，它把用户请求的数据经过业务处理层处理之后封装成一个Model ，然后再把该Model 返回给对应的View 进行展示。在Spring MVC 中提供了一个非常简便的定义Controller 的方法，你无需继承特定的类或实现特定的接口，只需使用@Controller 标记一个类是Controller ，然后使用@RequestMapping 和@RequestParam 等一些注解用以定义URL 请求和Controller 方法之间的映射，这样的Controller 就能被外界访问到。此外Controller 不会直接依赖于HttpServletRequest 和HttpServletResponse 等HttpServlet 对象，它们可以通过Controller 的方法参数灵活的获取到。
 
 @Controller 用于标记在一个类上，使用它标记的类就是一个Spring MVC Controller 控制器类。
-五大作用域： 原型  单例  request  session  全局session
+五大作用域： 原型 单例 request session 全局session
 
 @RequestMapping 用于映射Web请求，包括访问路径和参数（类或方法上）。使用@RequestMapping 注解的方法才是真正处理请求的处理器。
 RequestMapping注解有六个属性：

@@ -1,4 +1,3 @@
-- no display
 
 依赖的是commons-logging的接口，当运行起来的时候就会去classpath中寻找相关的实现类，如果没有的话就会报错，加入log4j或者其他的日志框架。这就是面向接口编程的最好例子
 

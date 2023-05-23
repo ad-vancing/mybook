@@ -1,32 +1,20 @@
-https://zhuanlan.zhihu.com/p/422389972
 
-https://kafka.apachecn.org/intro.html
 
-https://github.com/apache/kafka/
+
+https://kafka.apache.org/documentation/
 
 [残漏补缺](https://mp.weixin.qq.com/s?__biz=MzIzNTIzNzYyNw%3D%3D&chksm=e8eb7b04df9cf2121a98984fae0207d422b9d643a2c3ff4d7c91cabfe2e8b4d530a62c376035&idx=1&lang=zh_CN&mid=2247484048&scene=21&sn=2de06942948b02842fd042e7783cbc61&token=267415244#wechat_redirect)
 
+https://zhuanlan.zhihu.com/p/422389972
+
 # 为什么使用 Kafka
-Kafka 是一款开源、轻量级、可分区、可备份、高吞吐量的基于zookeeper的分布式流平台的发布订阅消息系统。能很好地处理活跃的流数据。使得数据在各个子系统中高性能、低延迟地不停流转。
+3高、持久化、多副本备份、Scale out 横向扩展能力……… 
 
-最初由Linkedin公司开发。
-
-具有高性能、持久化、多副本备份、横向扩展能力……… 
-
-```
-解耦：允许我们独立修改队列两边的处理过程而互不影响。
-
-冗余：有些情况下，我们在处理数据的过程会失败造成数据丢失。消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险, 确保你的数据被安全的保存直到你使用完毕
-
-峰值处理能力：不会因为突发的流量请求导致系统崩溃，消息队列能够使服务顶住突发的访问压力, 有助于解决生产消息和消费消息的处理速度不一致的情况
-
-异步通信：消息队列允许用户把消息放入队列但不立即处理它, 等待后续进行消费处理。
-```
 ## 应用场景
 应用监控、流处理、日志持久化处理
 
 # Kafka 的各个组件
-![图](http://cdn.17coding.info/WeChat%20Screenshot_20190325215237.png)
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202305181714009.png)
 
 - Broker：Broker是kafka的服务实例。  
 每个服务器上有一个或多个kafka的实例。每个kafka集群内的broker都有一个不重复的编号，如broker-0、broker-1等……    
@@ -41,21 +29,16 @@ partition的表现形式就是一个一个的文件夹，命名规则是“主�
 >分区数越多吞吐量越高，是负载均衡的基础，提高kafka的吞吐量。 因为每一个分区对应消费者的一个处理线程，分区越多并发处理越好，但太多线程反而增加系统负担，需要通过测试确定合理分区数。
 
 - Replication:每个分区有1至多个副本replica，它们分布在集群的不同代理上，以提高可用性。  
-当主分区（Leader）故障的时候会选择一个备胎（Follower）上位，成为Leader。  
+当主分区（Leader）故障的时候会选择一个副本（Follower）上位，成为Leader。  
 >在kafka中默认副本的最大数量是10个，且副本的数量不能大于Broker的数量，follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。
 
 - Message：是kafka通信的基本单位，由一个固定长度的消息头和一个可变长的消息体构成。   
 每条消息被追加到相应的分区中，是顺序写磁盘，因此效率高。  
->消息被消费后并不会立即被删除，kafka有两种删除已消费数据的策略：  
+  >消息被消费后并不会立即被删除，kafka有两种删除已消费数据的策略：  
 1）基于消息已存储的时长；  
 2）基于分区的大小。  
 支持Gzip、Snappy、LZ4这3种压缩方式。
 
-- 副本  
-每个分区的多个副本需要保证数据的一致性，kafka会选择一个副本作为leader副本，其他作为follower副本。  
-**只有leader副本负责处理客户端的读写请求（“Read-your-writes）**，follower副本**异步地**从leader副本拉取数据。
-
-对比：RabbitMQ 一个 queue 的数据都是放在一个节点里的，镜像集群下，也是每个节点都放这个 queue 的完整数据。
 
 - 偏移量offset  
 副本被抽象成一个日志对象，消息被追加到`.log`文件尾部，同时每条消息在日志文件中的位置都会对应一个按序递增的偏移量。  
@@ -98,122 +81,7 @@ kafka利用zk保存相应元数据信息，如代理节点信息、kafka集群�
 0.9版本前消费者消费消息的偏移量记录在zk中。  
 2.x版本的元数据信息都不保存在zk上了。
 
-
-
-# Kafka 存储机制等
-为了防止 log 文件过大导致数据定位效率低下，那么Kafka 采取了**分片**和**索引机制**。 
-
-当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够被删除，从而实现回收磁盘空间的目的。
- 
-每个 Segment 对应4个文件：“.index” 索引文件, “.log” 数据文件,  “.snapshot” 快照文件,  “.timeindex” 时间索引文件。  
-这些文件都位于同一文件夹下面，该文件夹的命名规则为：topic 名称-分区号(从 0 开始的)。   
-
-[参考](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488841&idx=1&sn=2ea884012493403ab45b450271708fc8&source=41#wechat_redirect)
-
-## 分段存储的好处
-partition将数据记录到.log文件中，为了避免文件过大影响查询效率，将文件分段处理
-
-记录消息到.log文件中的同时，会记录消息offset和物理偏移地址的映射作为索引，提升查找性能；
-
-这个索引并不是按消息的顺序依次记录的，而是每隔一定字节的数据记录一条索引，降低了索引文件的大小
-
-kafka查找消息时，只需要根据文件名和offset进行**二分查找**，找到对应的日志分段后，查找.index文件找到物理偏移地址，然后查.log读取消息内容
-
-## kafka是按照什么规则将消息划分到各个分区的
-如果producer指定了要发送的目标分区，消息自然是去到那个分区；
-
-否则就按照producer端参数partitioner.class指定的分区策略来定；
-
-如果你没有指定过partitioner.class，那么默认的规则是：看消息是否有key，如果有则计算key的murmur2哈希值%topic分区数；如果没有key，按照**轮询**的方式确定分区。
-
-### 分区策略
-- 轮询Round-robin
-- 随机Randomness(逊)
-- 按消息键保序策略
-Kafka 允许为每条消息定义消息键，简称为 Key。可以是一个有着明确业务含义的字符串，比如客户代码、部门编号或是业务 ID 等，一旦消息被定义了 Key，那么你就可以保证同一个 Key 的所有消息都进入到相同的分区里面，由于每个分区下的消息处理都是有顺序的，故这个策略被称为按消息键保序策略
-
-# Kafka Consumer Group 
-每个 Consumer Group 有一个或者多个 Consumer。每个 Consumer Group 拥有一个公共且唯一的 Group ID。    
->Kafka 仅仅使用 Consumer Group 这一种机制，同时实现了传统消息引擎系统的两大模型：如果所有实例都属于同一个 Group，那么它实现的就是消息队列模型；如果所有实例分别属于不同的 Group，那么它实现的就是发布 / 订阅模型。
-  
-Consumer Group 在消费 Topic 的时候，Topic 的每个 Partition 只能分配给组内的某个 Consumer，只要被任何 Consumer 消费一次, 那么这条数据就可以认为被当前 Consumer Group 消费成功。
-
->在使用过程中不推荐设置大于总分区数的 Consumer 实例，这样只会浪费资源。
-
-
-# Consumer之消费者组重分配机制 Consumer Rebalance
-对于 Consumer Group 来说，可能随时都会有 Consumer 加入或退出，那么 Consumer 列表的变化必定会引起 Partition 的重新分配（每个 Consumer 实例都能够得到较为平均的分区数）。
-
-Rebalance 本质上是一种协议，规定了一个 Consumer Group 下的所有 Consumer 如何达成一致，来分配订阅 Topic 的每个分区。
-
-[参考](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488851&idx=1&sn=987824e5ba607e2e33ae0c64adb77d84&source=41#wechat_redirect)
-## Consumer Group 何时进行 Rebalance 
-- 组成员数发生变更。比如有新的 Consumer 实例加入组或者离开组，抑或是有 Consumer 实例崩溃被“踢出”组，网络断了，心跳中断等。
-- 订阅主题数发生变更。Consumer Group 可以使用正则表达式的方式订阅主题，比如 `consumer.subscribe(Pattern.compile(“t.*c”))` 就表明该 Group 订阅所有以字母 t 开头、字母 c 结尾的主题。在 Consumer Group 的运行过程中，你新创建了一个满足这样条件的主题，那么该 Group 就会发生 Rebalance。
-- 订阅主题的分区数发生变更。Kafka 当前只能允许增加一个主题的分区数。当分区数增加时，就会触发订阅该主题的所有 Group 开启 Rebalance。
-
-## Rebalance 的缺点
-在 Rebalance 过程中，所有 Consumer 实例都会停止消费，等待 Rebalance 完成，对 Consumer 的 TPS 影响很大。
-
-效率不高，更高效的做法是尽量减少分配方案的变动。如果可能的话，最好还是让实例 A 继续消费分区 1、2、3，而不是被重新分配其他的分区。这样的话，实例 A 连接这些分区所在 Broker 的 TCP 连接就可以继续用，不用重新创建连接其他 Broker 的 Socket 资源。
-
-慢，比如有几百个 Consumer 实例时。
-
-最好还是避免 Rebalance！！！
-
-## Coordinator
-它专门为 Consumer Group 服务，负责为 Group 执行 Rebalance 以及提供位移管理和组成员管理等。
-
-## 哪些 Rebalance 是不必要需要避免的？怎么避免
-- 未能及时发送心跳，导致 Consumer 被“踢出”Group 而引发的。  
-设置`session.timeout.ms= 6s` 和 `heartbeat.interval.ms= 2s`的值。  
-保证 Consumer 实例在被判定为“dead”之前，能够发送至少 3 轮的心跳请求，即 session.timeout.ms >= 3 * heartbeat.interval.ms。
-
-- Consumer 消费时间过长导致  
-max.poll.interval.ms参数值最好设置得大一点，比你的下游最大处理时间稍长一点。
-
-- Consumer 端的 GC 表现  
-比如是否出现了频繁的 Full GC 导致的长时间停顿，从而引发了 Rebalance。   
-GC 设置不合理导致程序频发 Full GC 而引发的非预期 Rebalance 也有很多。
-
-### 相关参数解释
-- session.timeout.ms
-当 Consumer Group 完成 Rebalance 之后，每个 Consumer 实例都会定期地向 Coordinator 发送心跳请求，表明它还存活着。如果某个 Consumer 实例不能及时地发送这些心跳请求，Coordinator 就会认为该 Consumer 已经“死”了，从而将其从 Group 中移除，然后开启新一轮 Rebalance。  
-Consumer 端参数`session.timeout.ms`，就是被用来表征此事的。该参数的默认值是 10 秒，即如果 Coordinator 在 10 秒之内没有收到 Group 下某 Consumer 实例的心跳，它就会认为这个 Consumer 实例已经挂了。可以这么说，session.timout.ms 决定了 Consumer 存活性的时间间隔。
-
-- heartbeat.interval.ms
-Consumer 还有一个允许你控制发送心跳请求频率的参数，`heartbeat.interval.ms`。  
-这个值设置得越小，Consumer 实例发送心跳请求的频率就越高。频繁地发送心跳请求会额外消耗带宽资源，但好处是能够更加快速地知晓当前是否开启 Rebalance，因为，目前 Coordinator 通知各个 Consumer 实例开启 Rebalance 的方法，就是将 REBALANCE_NEEDED 标志封装进心跳请求的响应体中。
-
-- max.poll.interval.ms
-Consumer 端还有一个参数，用于控制 Consumer 实际消费能力对 Rebalance 的影响，即 `max.poll.interval.ms` 参数。它限定了 Consumer 端应用程序两次调用 poll 方法的最大时间间隔。它的默认值是 5 分钟，表示你的 Consumer 程序如果在 5 分钟之内无法消费完 poll 方法返回的消息，那么 Consumer 会主动发起“离开组”的请求，Coordinator 也会开启新一轮 Rebalance。
-
-## 重平衡过程是如何通知到其他消费者实例的
-Kafka Java 消费者有一个单独的心跳线程来专门定期地执行心跳请求发送请求（Heartbeat Request）到 Broker 端的协调者，以表明它还存活着。  
-重平衡的通知机制正是通过**心跳线程**来完成的。当协调者决定开启新一轮重平衡后，它会将“REBALANCE_IN_PROGRESS”封装进心跳请求的响应中，发还给消费者实例。当消费者实例发现心跳响应中包含了“REBALANCE_IN_PROGRESS”，就能立马知道重平衡又开始了。
-
-## 重平衡时消费者组的状态流转
-Kafka 为消费者组定义了 5 种状态，它们分别是：Empty、Dead、PreparingRebalance、CompletingRebalance 和 Stable。  
-一个消费者组最开始是 Empty 状态，当重平衡过程开启后，它会被置于 PreparingRebalance 状态等待成员加入，之后变更到 CompletingRebalance 状态等待分配方案，最后流转到 Stable 状态完成重平衡。  
-
-## 消费者端重平衡流程
-在消费者端，重平衡分为两个步骤：分别是加入组和等待领导者消费者（Leader Consumer）分配方案。这两个步骤分别对应两类特定的请求：JoinGroup 请求和 SyncGroup 请求。  
-
-当组内成员加入组时，它会向协调者发送 JoinGroup 请求。通常情况下，第一个发送 JoinGroup 请求的成员自动成为领导者。   
-协调者会把消费者组订阅信息封装进 JoinGroup 请求的响应体中，然后发给领导者，由领导者统一做出分配方案后，进入到下一步：发送 SyncGroup 请求。  
-
-领导者向协调者发送 SyncGroup 请求，将刚刚做出的分配方案发给协调者。值得注意的是，其他成员也会向协调者发送 SyncGroup 请求，只不过请求体中并没有实际的内容。这一步的主要目的是让协调者接收分配方案，然后统一以 SyncGroup 响应的方式分发给所有成员，这样组内所有成员就都知道自己该消费哪些分区了。
-
-## Broker 端重平衡场景剖析
-### 场景一：新成员入组是指组处于 Stable 状态后，有新成员加入。
-### 场景二：组成员主动离组。
-### 场景三：组成员崩溃离组。
-协调者通常需要等待一段时间才能感知到，这段时间一般是由消费者端参数 session.timeout.ms 控制的
-### 场景四：重平衡时协调者对组内成员提交位移的处理。
-
-
-
-# Kafka 为什么高可用，为什么性能这么高，为什么高并发
+# Kafka 怎么做到3高
 [Kafka 三高架构](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488842&idx=1&sn=8091e4f5f6dd1ab1d50bef48211e2d4e&source=41#wechat_redirect)
 
 https://zhuanlan.zhihu.com/p/443164257      
@@ -225,85 +93,23 @@ https://zhuanlan.zhihu.com/p/443164257
 >Q:为什么 Kafka 不像 MySQL 那样允许追随者副本对外提供读服务？  
 因为mysql一般部署在不同的机器上一台机器读写会遇到瓶颈，Kafka中的领导者副本一般均匀分布在不同的broker中，已经起到了负载的作用。
 
-## 高性能/吞吐量
+## 高性能
+[做到单机每秒几十万的吞吐量，Kafka 的高性能设计可以说是全方位的，从 Prodcuer 、到 Broker、再到 Consumer，Kafka 在掏空心思地优化每一个细节，最终才做到了这样的极致性能。](https://mp.weixin.qq.com/s?__biz=MzU2MTM4NDAwMw==&mid=2247491507&idx=1&sn=f1bec356c94cd0101809dc11dcf27ba2&chksm=fc78c09fcb0f49898f6cc9b80499aeb871a80f95ab4fbe12c32567cab6a3521a6c33b61dd807&scene=178&cur_album_id=1763234202604388353#rd)
+
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202305181742821.png)
+
 1. 顺序读写磁盘。Kafka 使用消息日志（Log）来保存数据，一个日志就是磁盘上一个只能追加写（Append-only）消息的物理文件。因为只能追加写入，故避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作。
 2. I/O 模型：epoll 系统调用则介于I/O 多路复用和信号驱动 I/O 之间的。Kafka 客户端底层使用了 Java 的 selector，selector 在 Linux 上的实现机制是 epoll，而在 Windows 平台上的实现机制是 select。因此在这一点上将 Kafka 部署在 Linux 上是有优势的，因为能够获得更高效的 I/O 性能。
 3. 网络传输：零拷贝(Zero Copy)技术，就是当数据在磁盘和网络进行传输 时避免昂贵的内核态数据拷贝从而实现快速地数据传输。
+4. lz4压缩
 
-## 零拷贝技术使用哪个方法实现
+### 零拷贝技术使用哪个方法实现?
 让操作系统的 os cache 中的数据直接发送到网卡后传出给下游的消费者，中间跳过了两次拷贝数据的步骤，从而减少拷贝的 CPU 开销, 减少用户态内核态的上下文切换次数,  从而优化数据传输的性能。  
 
 >Kafka 主要使用到了 mmap  和 sendfile 的方式来实现零拷贝,  对应java里面的 MappedByteBuffer 和 FileChannel.transferIO。  
 使用 java NIO 实现的 零拷贝,
 
 
-## Leader节点的选举过程
-各个节点公平竞争抢占 Zookeeper 系统中创建 /controller临时节点，最先创建成功的节点会成为控制器，并拥有选举主题分区Leader节点的功能。
-
-
-# 副本同步机制 
-[参考](https://www.cnblogs.com/huxi2b/p/7453543.html)
-## ISR
-每个分区都有一个 ISR(in-sync Replica) 列表，用于维护所有同步的、可用的副本。  
-如果一个follower副本宕机或落后太多，则该follower副本节点将从ISR列表中移除。  
-
-### Kafka 判断 Follower 是否与 Leader 同步的标准
-参数 `replica.lag.time.max.ms `，含义是 Follower 副本能够落后 Leader 副本的最长时间间隔，当前默认值是 10 秒。  
-也就是说，只要一个 Follower 副本落后 Leader 副本的时间不连续超过 10 秒，那么 Kafka 就认为该 Follower 副本与 Leader 是同步的。  
-否则此 Follower 副本就会被认为是与 Leader 副本不同步的，因此不能再放入 ISR 中。此时，Kafka 会自动收缩 ISR 集合，将该副本“踢出”ISR（踢出去后副本还会做同步操作）。 
-Kafka 把所有不在 ISR 中的存活副本都称为**非同步副本**。 
-
-倘若该副本后面慢慢地追上了 Leader 的进度（Follower的HighWatermark追赶上Leader），那么它是能够重新被加回 ISR 的。这也表明，ISR 是一个动态调整的集合，而非静态不变的。
-
-### ISR 是怎么维护着的
-
-### Unclean 领导者选举
-如果 ISR 为空了，就说明 Leader 副本也“挂掉”了，Kafka 需要重新选举一个新的 Leader。  
-非同步副本落后 Leader 太多，如果此时选择这些副本作为新 Leader，就会出现数据的丢失（但是提升了高可用性），选举这种副本的过程称为 Unclean 领导者选举。  
->参数 `unclean.leader.election.enable` 控制是否允许 Unclean 领导者选举。
-
-## High Watermark 和 Log End Offset
-Follower 是先从 Leader 那去同步然后再写入磁盘的，所以它磁盘上面的数据一般会比 Leader 的那块少一些。  
-**高水位hw** ：副本最新一条己提交消息的 offset（都有的）     
-**日志末端位移leo** ：副本中下一条待写入消息的 offset  
-
-![图](https://img2022.cnblogs.com/blog/1331583/202210/1331583-20221016122546090-1040396702.png)
-
-Kafka 所有副本都有对应的高水位和 LEO 值。  
-Kafka 使用 Leader 副本的高水位来定义所在分区的高水位。换句话说，分区的高水位就是其 Leader 副本的高水位。  
-在 Leader 副本所在的 Broker 上，还保存了其他 Follower 副本的 LEO 值。这些 Follower 副本又称为远程副本（Remote Replica）。  
-
-
-### 高水位的作用
-- 用来标识分区下的哪些消息是可以被消费者消费的（HW 之前的消息数据对消费者是可见的, 属于 commited 状态,  HW 之后包括等于的消息数据对消费者是不可见的）。  
-- 协助 Kafka 完成副本数据同步  
-
-LEO一个重要作用就是用来更新HW:  
-如果 Follower 和 Leader 的 LEO 数据同步了, 那么 HW 就可以更新了。 
-
-### hw和leo的更新机制
-- Follower 副本 leo : 从 Leader 副本拉取消息写入本地磁盘后，会更新 leo 。
-- Leader 副本 leo : 接受到生产者发送的消息，写入本地磁盘后，会更新 leo 。
-- Leader 副本上远程副本 leo : Follower 从 Leader 副本拉取消息时，会告诉 Leader 从哪开始拉取，这个位移会被更新到远程副本 leo 。
-- Follower 副本 hw : Follower 更新完 leo 后，用 min(leo, **Leader 发来的 hw**)更新自己的 hw 。
-- Leader 副本 hw : Leader 更新完 leo 或更新完远程副本 leo 后，用 min(leo, **所有与该Leader同步的远程副本的 leo**)更新自己的 hw 。  
->与 Leader 副本保持同步。判断的条件有两个。
- 1. 该远程 Follower 副本在 ISR 中。  
- 2. 该远程 Follower 副本 LEO 值落后于 Leader 副本 LEO 值的时间，不超过 Broker 端参数 replica.lag.time.max.ms 的值。如果使用默认值的话，就是不超过 10 秒。
-
-依托于高水位，Kafka 既界定了消息的对外可见性，又实现了异步的副本同步机制。
-
-## Leader Epoch
-Leader 副本高水位更新和 Follower 副本高水位更新在时间上是存在错配的。这种错配是很多“数据丢失”或“数据不一致”问题的根源。  
-引入 Leader Epoch 来规避因高水位更新错配导致的各种不一致问题。  
-
-组成部分：  
-1. Epoch。一个单调增加的版本号。每当副本领导权发生变更时，都会增加该版本号。小版本号的 Leader 被认为是过期 Leader，不能再行使 Leader 权力。
-2. 起始位移（Start Offset）。Leader 副本在该 Epoch 值上写入的首条消息的位移。  
-
-如有两个 Leader Epoch<0, 0> 和 <1, 120>，那么，第一个 Leader Epoch 表示版本号是 0，这个版本的 Leader 从位移 0 开始保存消息，一共保存了 120 条消息。之后，Leader 发生了变更，版本号增加到 1，新版本的起始位移是 120。
-
-这样，每次有 Leader 变更时，新的 Leader 副本会查询这部分缓存，取出对应的 Leader Epoch 的起始位移，以避免数据丢失和不一致的情况。
 
 # 场景设计
 [Kafka生产级容量评估方案](https://mp.weixin.qq.com/s?__biz=Mzg3MTcxMDgxNA==&mid=2247488846&idx=1&sn=1d77a05c7e94abd8044502c433d9aeee&source=41#wechat_redirect)
@@ -444,17 +250,11 @@ commitSync(Map<TopicPartition, OffsetAndMetadata>) 和 commitAsync(Map<TopicPart
 2） Consumer 消费消息完成后, 再更新 Offset，如果这时 Consumer crash 掉，那么新的 Consumer 接管后重新用这个 Offset 拉取消息， 这时就会造成 at least once 语义。只能业务自己保证幂等性。
 
 
-# Kafka 怎么保证消息的顺序消费
-1. 所有的消息都只在这一个分区内读写，因此保证了全局的顺序性。这样做虽然实现了因果关系的顺序性，但也丧失了 Kafka 多分区带来的高吞吐量和负载均衡的优势。
-2. 设定专门的分区策略，把标志位数据提取出来统一放到 Key 中，保证同一标志位的所有消息都发送到同一分区，这样既可以保证分区内的消息顺序，也可以享受到多分区带来的性能红利。
-
-# Kafka 怎么避免重复消费
-
 
 # 补充拓展
 
 ## Kafka 拦截器（了解）
-Kafka 拦截器分为生产者拦截器和消费者拦截器。生产者拦截器允许你在发送消息前以及消息提交成功后植入你的拦截器逻辑；而消费者拦截器支持在消费消息前以及提交位移后编写特定逻辑。值得一提的是，这两种拦截器都支持链的方式，即你可以将一组拦截器串连成一个大的拦截器，Kafka 会按照添加顺序依次执行拦截器逻辑。
+Kafka 拦截器分为生产者拦截器 ProducerInterceptor 和消费者拦截器。生产者拦截器允许你在发送消息前以及消息提交成功后植入你的拦截器逻辑；而消费者拦截器支持在消费消息前以及提交位移后编写特定逻辑。值得一提的是，这两种拦截器都支持链的方式，即你可以将一组拦截器串连成一个大的拦截器，Kafka 会按照添加顺序依次执行拦截器逻辑。
 
 ## Apache Kafka 的所有通信都是基于 TCP 的
 ### Kafka 的 Producer 客户端是如何管理这些 TCP 连接的?

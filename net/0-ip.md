@@ -1,5 +1,13 @@
 https://www.cnblogs.com/cashew/p/10722116.html
 
+准确滴说，ip 是分配给每个网络硬件的，如果一台设备有多个网络硬件，那么就会有多个 ip 地址。
+
+实际上，浏览器发送请求消息给服务器，是浏览器委托操作系统发送给web服务器（网络环境中）的。  
+第一步需要查询网址中服务器域名对应的IP地址。
+
+# TCP/IP结构
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202305232211568.png)
+
 # ip协议头部
 ```
 struct iphdr {

@@ -1,10 +1,29 @@
 
 # 什么是Spring MVC 
-是 spring 的一个模块。  
 是一个基于Java的实现了MVC设计模式的请求驱动类型的轻量级Web框架。
 通过把Model，View，Controller分离，将web层进行职责解耦，把复杂的web应用分成逻辑清晰的几部分，简化开发，减少出错，方便组内开发人员之间的配合。
 
 ![](https://pic1.zhimg.com/v2-642df23c5fc99101fb6d9fb693446b90_r.jpg)
+
+# Spring MVC的流程
+![](https://cdn.jsdelivr.net/gh/ad-vancing/pics/2023/202305221804977.png)
+
+1. 用户发送请求至**前端控制器DispatcherServlet**；
+2. DispatcherServlet收到请求后，得到请求资源标识符（URI），**调用HandlerMapping处理器映射器**；
+3. 处理器映射器根据请求url找到生成**处理器对象及处理器拦截器**(如果有则生成)一并返回给DispatcherServlet；
+4. DispatcherServlet 调用 **HandlerAdapter处理器适配器**；
+5. HandlerAdapter 经过适配**调用具体处理器Controller**；
+    >在填充Handler的入参过程中，根据你的配置，Spring 将帮你做一些额外的工作：  
+  HttpMessageConveter： 将请求消息（如 Json、xml 等数据）转换成一个对象，将对象转换为指定的响应信息。  
+  数据转换：对请求消息进行数据转换。如String转换成Integer、Double等。  
+  数据根式化：对请求消息进行数据格式化。 如将字符串转换成格式化数字或格式化日期等。  
+  数据验证： 验证数据的有效性（长度、格式等），验证结果存储到BindingResult或Error中。
+6. Controller执行完成返回**ModelAndView**（视图路径和数据）；
+7. HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；
+8. DispatcherServlet将ModelAndView传给**ViewResolver视图解析器**进行解析；
+9. ViewResolver解析后返回具体View；
+10. DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）
+11. DispatcherServlet响应用户。
 
 # Spring MVC的优点
 - 可以支持各种视图技术,而不仅仅局限于JSP；
@@ -75,19 +94,7 @@ View是一个接口， 它的实现类支持不同的视图类型（jsp，freema
     }
 ```
 
-# Spring MVC的流程
-![图](https://img-blog.csdn.net/20180708224853769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-1. 用户发送请求至前端控制器DispatcherServlet；
-2. DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handle；
-3. 处理器映射器根据请求url找到具体的处理器Controller，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet；
-4. DispatcherServlet 调用 HandlerAdapter处理器适配器；
-5. HandlerAdapter 经过适配调用 具体处理器Controller；
-6. Controller执行完成返回ModelAndView（视图路径和数据）；
-7. HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；
-8. DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析；
-9. ViewResolver解析后返回具体View；
-10. DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）
-11. DispatcherServlet响应用户。
+
 
 # Spring mvc初始化过程
 https://blog.csdn.net/wqadxmm/article/details/115182792

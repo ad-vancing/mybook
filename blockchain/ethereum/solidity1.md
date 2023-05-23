@@ -23,9 +23,9 @@ public key -> keccak256哈希 后取最后20 byte（40bit of hexadecimal）得�
 - contract account
 
 # storage
-- storage 成员变量默认，函数内部局部变量。网络中的。引用传递
+- storage 成员变量默认，网络中的。by reference passing
 
-- memory 函数返回值。值类型默认memory
+- memory 函数入参数默认，内部局部变量、返回值。by value passing ，也可以用storage转换
 
 # key words
 mint

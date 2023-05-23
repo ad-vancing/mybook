@@ -1,47 +1,5 @@
 [参考](https://mp.weixin.qq.com/s?__biz=MzIyNjAzODEyMg==&mid=2247484763&idx=1&sn=f81b9fbdf26049e407fe78306014c654&source=41#wechat_redirect)
 
-# Spring声明式事务实现原理
-
-声明式事务成为可能，主要得益于Spring AOP。  
-使用一个事务拦截器，在方法调用的前后/周围进行事务性增强（advice），来驱动事务完成。
-
-Spring团队建议注解标注在类上而非接口上。  
-只有public方法支持事务。
-
-https://blog.csdn.net/qq_33369905/article/details/105828921
-
-# Spring 事务的传播属性
-
-针对方法嵌套调用时事务的创建行为定义了七种事务传播机制，分别是:
-## PROPAGATION_REQUIRED（Spring默认）
-如果外部方法没有开启事务的话，Propagation.REQUIRED（默认就是）修饰的内部方法会新开启自己的事务，且Propagation.REQUIRED（默认就是）修饰的内部方法之间开启的事务相互独立，互不干扰。
-如果外部方法开启事务并且指定为Propagation.REQUIRED(默认就是)，所有Propagation.REQUIRED修饰的内部方法和外部方法均属于同一事务 ，只要一个方法回滚，整个事务均回滚。
-
-## PROPAGATION_SUPPORT
-支持当前事务。如果当前有事务，就参与进来，如果没有，就以非事务的方式运行。
-
-## PROPAGATION_MANDATORY
-如果当前方法没有事务存在，就抛出异常。
-
-## PROPAGATION_REQUIRES_NEW
-总是使用一个独立的物理事务用于每一个受影响的逻辑事务范围，从来不参与到一个已存在的外围事务范围。
-这样安排的话，底层的事务资源是不同的，因此，可以独立地提交或回滚。
-外围事务不会被内部事务的回滚状态影响。
-这样一个独立的内部事务可以声明自己的隔离级别，超时时间和只读设置，并不继承外围事务的特性。
-
-## PROPAGATION_NOT_SUPPORTED
-不支持当前事务。总是以非事务方式运行。
-
-## PROPAGATION_NEVER
-如果当前有事务存在，就抛出异常。
-
-## PROPAGATION_NESTED
-使用同一个物理事务，但带有多个保存点，可以回滚到这些保存点，可以认为是**部分回滚**，这样一个内部事务范围触发了一个回滚，外围事务能够继续这个物理事务，尽管有一些操作已经被回滚。
-典型地，它对应于JDBC的保存点，所以只对JDBC事务资源起作用。
-
-生成一个保存点就是生成一个数据镜像。然后无论经过了什么sql操作，只要使用回滚至此保存点的命令即可恢复至创建保存点的数据状态。
-
-
 # 脏读
 一个事务修改了一行数据但没有提交，第二个事务可以读取到这行被修改的数据，如果第一个事务回滚，第二个事务获取到的数据将是无效的。
 
@@ -54,6 +12,84 @@ https://blog.csdn.net/qq_33369905/article/details/105828921
 总结：写读是脏读，读写读是不可重复读，where insert where是幻读。
 
 [mysql 事务](https://segmentfault.com/a/1190000019684584)
+
+# Spring 事务中的隔离级别
+`java.sql.Connection.TransactionDefinition`类中，int getIsolationLevel()获取隔离级别。
+
+- TransactionDefinition.ISOLATION_DEFAULT  
+  使用后端数据库默认的隔离级别，Mysql 默认采用的 REPEATABLE_READ隔离级别 Oracle 默认采用的 READ_COMMITTED隔离级别.
+- TransactionDefinition.ISOLATION_READ_UNCOMMITTED  
+  最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读
+- TransactionDefinition.ISOLATION_READ_COMMITTED  
+  允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生
+- TransactionDefinition.ISOLATION_REPEATABLE_READ  
+  对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。
+- TransactionDefinition.ISOLATION_SERIALIZABLE  
+  最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。
+
+
+# Spring声明式事务实现原理
+
+声明式事务成为可能，主要得益于Spring AOP。  
+使用一个事务拦截器，在方法调用的前后/周围进行事务性增强（advice），来驱动事务完成。
+
+Spring团队建议注解标注在类上而非接口上。  
+只有public方法支持事务。
+
+
+
+# Spring 事务的传播属性
+`java.sql.Connection.TransactionDefinition`类中，int getPropagationBehavior()获获取传播行为。    
+
+针对方法嵌套调用时事务的创建行为定义了七种事务传播机制，分别是:
+
+## PROPAGATION_REQUIRED（Spring默认）
+如果外部方法没有开启事务的话，Propagation.REQUIRED（默认就是）修饰的内部方法会新开启自己的事务，且Propagation.REQUIRED（默认就是）修饰的内部方法之间开启的事务相互独立，互不干扰。
+
+如果外部方法开启事务并且指定为Propagation.REQUIRED(默认就是)，所有Propagation.REQUIRED修饰的内部方法和外部方法均属于同一事务 ，只要一个方法回滚，整个事务均回滚。
+
+## PROPAGATION_SUPPORT
+支持当前事务。如果当前有事务，就参与进来，如果没有，就以非事务的方式运行。
+
+## PROPAGATION_MANDATORY
+如果当前方法没有事务存在，就抛出异常。
+
+## PROPAGATION_REQUIRES_NEW
+仅支持JtaTransactionManager作为事物管理器。
+
+总是使用一个独立的物理事务用于每一个受影响的逻辑事务范围，从来**不参与到一个已存在的外围事务范围**。
+
+这样安排的话，底层的事务资源是不同的，因此，可以**独立地提交或回滚**。  
+外围事务不会被内部事务的回滚状态影响。  
+这样一个独立的内部事务可以声明自己的隔离级别，超时时间和只读设置，并不继承外围事务的特性。
+
+## PROPAGATION_NOT_SUPPORTED
+仅支持JtaTransactionManager作为事物管理器。
+
+不支持当前事务。总是以非事务方式运行。
+
+## PROPAGATION_NEVER
+如果当前有事务存在，就抛出异常。
+
+## PROPAGATION_NESTED
+仅支持DataSourceTransactionManager作为事物管理器和部分JTA事物管理器
+
+- 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；
+
+  >使用同一个物理事务，但带有多个保存点，可以回滚到这些保存点，可以认为是**部分回滚**，这样一个内部事务范围触发了一个回滚，外围事务能够继续这个物理事务，尽管有一些操作已经被回滚。
+典型地，它对应于JDBC的保存点，所以只对JDBC事务资源起作用。  
+生成一个保存点就是生成一个数据镜像。然后无论经过了什么sql操作，只要使用回滚至此保存点的命令即可恢复至创建保存点的数据状态。
+
+- 如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
+
+[参考](https://www.jianshu.com/p/2455169de8f7)
+
+# 事物管理器
+Spring事务的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。真正的数据库层的事务提交和回滚是通过binlog或者redo log实现的。
+
+spring 为不同的平台提供了不同的事物管理器。不同的事物管理器都继承自抽象类`org.springframework.transaction.support.AbstractPlatformTransactionManager`。该抽象类实现了`org.springframework.jdbc.datasource.PlatformTransactionManager` ，实现了事物管理器的骨架实现，通过继承该类，仅仅关心平台相关内容即可实现不同的事物管理器。
+
+# Spring声明式事务为什么能每次拿到相同的connection（ThreadLocal?）
 
 
 # Spring事务不生效的原因

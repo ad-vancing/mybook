@@ -18,3 +18,13 @@ https://github.com/ethereum
 3. Making decentralized application     
   [web3js-example-react-app](https://github.com/ChainSafe/web3js-example-react-app)
   [create-eth-appexamples](https://github.com/paulrberg/create-eth-app)
+
+# GAS
+transacton cost [gas](https://ethgasstation.info/) 
+
+ total cost = gas price * gas   
+
+[不同的操作消耗不同](https://github.com/crytic/evm-opcodes)  
+https://etherscan.io/opcode-tool
+
+https://www.wwsww.cn/jishu/5209.html
