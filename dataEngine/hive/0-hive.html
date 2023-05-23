@@ -1,0 +1,2909 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Hive · cyan文档库</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="cyan">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="field_type.html" />
+    
+    
+    <link rel="prev" href="../hadoop/0-hdfs.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../net/0-http.html">
+            
+                <a href="../../net/0-http.html">
+            
+                    
+                    网络与系统设计
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../net/0-tcp.html">
+            
+                <a href="../../net/0-tcp.html">
+            
+                    
+                    Tcp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../net/0-ip.html">
+            
+                <a href="../../net/0-ip.html">
+            
+                    
+                    Ip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../net/2-system_design.html">
+            
+                <a href="../../net/2-system_design.html">
+            
+                    
+                    system_design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../zlc/">
+            
+                <a href="../../zlc/">
+            
+                    
+                    数据结构算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../zlc/0-sort.html">
+            
+                <a href="../../zlc/0-sort.html">
+            
+                    
+                    排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../zlc/link/0-node.html">
+            
+                <a href="../../zlc/link/0-node.html">
+            
+                    
+                    链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../zlc/tree/m.html">
+            
+                <a href="../../zlc/tree/m.html">
+            
+                    
+                    树
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../zlc/tree/1-b.html">
+            
+                <a href="../../zlc/tree/1-b.html">
+            
+                    
+                    b树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../zlc/tree/1-redBlack.html">
+            
+                <a href="../../zlc/tree/1-redBlack.html">
+            
+                    
+                    红黑树
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../zlc/backTracking.html">
+            
+                <a href="../../zlc/backTracking.html">
+            
+                    
+                    回溯搜索算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../zlc/alg.html">
+            
+                <a href="../../zlc/alg.html">
+            
+                    
+                    alg
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../linux/0-qa.html">
+            
+                <a href="../../linux/0-qa.html">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../linux/0-grep.html">
+            
+                <a href="../../linux/0-grep.html">
+            
+                    
+                    Grep
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../linux/0-ps.html">
+            
+                <a href="../../linux/0-ps.html">
+            
+                    
+                    Ps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../linux/curl.html">
+            
+                <a href="../../linux/curl.html">
+            
+                    
+                    Curl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../linux/find.html">
+            
+                <a href="../../linux/find.html">
+            
+                    
+                    Find
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../linux/hadoop_shell.html">
+            
+                <a href="../../linux/hadoop_shell.html">
+            
+                    
+                    Hadoop Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../linux/sed_awk_.html">
+            
+                <a href="../../linux/sed_awk_.html">
+            
+                    
+                    Sed Awk 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../linux/shell.html">
+            
+                <a href="../../linux/shell.html">
+            
+                    
+                    Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" data-path="../../linux/0-git.html">
+            
+                <a href="../../linux/0-git.html">
+            
+                    
+                    git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" data-path="../../linux/1-kernal.html">
+            
+                <a href="../../linux/1-kernal.html">
+            
+                    
+                    linux kernal
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../midware/kafka/0-mq.html">
+            
+                <a href="../../midware/kafka/0-mq.html">
+            
+                    
+                    中间件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../../midware/kafka/0-mq.html">
+            
+                <a href="../../midware/kafka/0-mq.html">
+            
+                    
+                    mq
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1.1" data-path="../../midware/kafka/0-kafka.html">
+            
+                <a href="../../midware/kafka/0-kafka.html">
+            
+                    
+                    Kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.2" data-path="../../midware/kafka/0-kafka-storage.html">
+            
+                <a href="../../midware/kafka/0-kafka-storage.html">
+            
+                    
+                    Kafka 存储机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.3" data-path="../../midware/kafka/1-kafka-producer.html">
+            
+                <a href="../../midware/kafka/1-kafka-producer.html">
+            
+                    
+                    Kafka producer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.4" data-path="../../midware/kafka/1-kafka-consumer.html">
+            
+                <a href="../../midware/kafka/1-kafka-consumer.html">
+            
+                    
+                    Kafka consumer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.5" data-path="../../midware/kafka/0-kafka-shell.html">
+            
+                <a href="../../midware/kafka/0-kafka-shell.html">
+            
+                    
+                    Kafka-shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.6" data-path="../../midware/kafka/1-kafka-properties.html">
+            
+                <a href="../../midware/kafka/1-kafka-properties.html">
+            
+                    
+                    Kafka-properties
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.1.7" data-path="../../midware/kafka/1-kafka其他.html">
+            
+                <a href="../../midware/kafka/1-kafka其他.html">
+            
+                    
+                    Kafka-其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../../midware/redis/0-qa.html">
+            
+                <a href="../../midware/redis/0-qa.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.2.1" data-path="../../midware/redis/0-cluster.html">
+            
+                <a href="../../midware/redis/0-cluster.html">
+            
+                    
+                    集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2.2" data-path="../../midware/redis/0-redisLock.html">
+            
+                <a href="../../midware/redis/0-redisLock.html">
+            
+                    
+                    锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2.3" data-path="../../midware/redis/0-senior1.html">
+            
+                <a href="../../midware/redis/0-senior1.html">
+            
+                    
+                    数据结构与内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../../midware/zk/0-qa.html">
+            
+                <a href="../../midware/zk/0-qa.html">
+            
+                    
+                    Zk
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../../midware/ng.html">
+            
+                <a href="../../midware/ng.html">
+            
+                    
+                    ng
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../devOps/devOps.html">
+            
+                <a href="../../devOps/devOps.html">
+            
+                    
+                    devOps
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../../devOps/docker1.html">
+            
+                <a href="../../devOps/docker1.html">
+            
+                    
+                    docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1.1" data-path="../../devOps/docker-compose-hadoop.html">
+            
+                <a href="../../devOps/docker-compose-hadoop.html">
+            
+                    
+                    Docker Compose Hadoop
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../../devOps/k8s.html">
+            
+                <a href="../../devOps/k8s.html">
+            
+                    
+                    K8s
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.2.1" data-path="../../devOps/k8s-hook.html">
+            
+                <a href="../../devOps/k8s-hook.html">
+            
+                    
+                    K8s Hook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../../分布式/qa.html">
+            
+                <a href="../../分布式/qa.html">
+            
+                    
+                    分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../../分布式/0-consHash.html">
+            
+                <a href="../../分布式/0-consHash.html">
+            
+                    
+                    ConsHash
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../../分布式/1-rpc.html">
+            
+                <a href="../../分布式/1-rpc.html">
+            
+                    
+                    Rpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../0-dataEngine.html">
+            
+                <a href="../0-dataEngine.html">
+            
+                    
+                    dataEngine
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../hadoop/0-hadoop.html">
+            
+                <a href="../hadoop/0-hadoop.html">
+            
+                    
+                    Hadoop
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1" data-path="../hadoop/0-hdfs.html">
+            
+                <a href="../hadoop/0-hdfs.html">
+            
+                    
+                    Hdfs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.1.2" data-path="0-hive.html">
+            
+                <a href="0-hive.html">
+            
+                    
+                    Hive
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.2.1" data-path="field_type.html">
+            
+                <a href="field_type.html">
+            
+                    
+                    Field Type
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.2" data-path="func.html">
+            
+                <a href="func.html">
+            
+                    
+                    Func
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.3" data-path="hiveserver.html">
+            
+                <a href="hiveserver.html">
+            
+                    
+                    Hiveserver
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.4" data-path="hql-ddl.html">
+            
+                <a href="hql-ddl.html">
+            
+                    
+                    Hql
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.5" data-path="loadData.html">
+            
+                <a href="loadData.html">
+            
+                    
+                    LoadData
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.6" data-path="partition.html">
+            
+                <a href="partition.html">
+            
+                    
+                    Partition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.7" data-path="stringCharJoin.html">
+            
+                <a href="stringCharJoin.html">
+            
+                    
+                    StringCharJoin
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../0-hbase.html">
+            
+                <a href="../0-hbase.html">
+            
+                    
+                    hbase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../0-mr.html">
+            
+                <a href="../0-mr.html">
+            
+                    
+                    mapreduce
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="../0-shuffle.html">
+            
+                <a href="../0-shuffle.html">
+            
+                    
+                    Shuffle
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="../flume.html">
+            
+                <a href="../flume.html">
+            
+                    
+                    flume
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="../spark.html">
+            
+                <a href="../spark.html">
+            
+                    
+                    spark
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="../spark-streaming.html">
+            
+                <a href="../spark-streaming.html">
+            
+                    
+                    spark-streaming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.9" data-path="../flink.html">
+            
+                <a href="../flink.html">
+            
+                    
+                    flink
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.10" data-path="../flink-stream.html">
+            
+                <a href="../flink-stream.html">
+            
+                    
+                    flink-stream
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../../db/mysql/1-index.html">
+            
+                <a href="../../db/mysql/1-index.html">
+            
+                    
+                    database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../../db/0-sqlop.html">
+            
+                <a href="../../db/0-sqlop.html">
+            
+                    
+                    Sql优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../../db/influxdb/real.html">
+            
+                <a href="../../db/influxdb/real.html">
+            
+                    
+                    Influxdb
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.2.1" data-path="../../db/influxdb/InfluxQL.html">
+            
+                <a href="../../db/influxdb/InfluxQL.html">
+            
+                    
+                    InfluxQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2.2" data-path="../../db/influxdb/dataxnote.html">
+            
+                <a href="../../db/influxdb/dataxnote.html">
+            
+                    
+                    Dataxnote
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2.3" data-path="../../db/influxdb/install.html">
+            
+                <a href="../../db/influxdb/install.html">
+            
+                    
+                    Install
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../../db/mysql/1-index.html">
+            
+                <a href="../../db/mysql/1-index.html">
+            
+                    
+                    Mysql
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.3.1" data-path="../../db/mysql/1-sql-optimize.html">
+            
+                <a href="../../db/mysql/1-sql-optimize.html">
+            
+                    
+                    Sql优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.2" data-path="../../db/mysql/1-transaction.html">
+            
+                <a href="../../db/mysql/1-transaction.html">
+            
+                    
+                    事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.3" data-path="../../db/mysql/0-FullTextIndex.html">
+            
+                <a href="../../db/mysql/0-FullTextIndex.html">
+            
+                    
+                    FullTextIndex
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.4" data-path="../../db/mysql/mysql_log.html">
+            
+                <a href="../../db/mysql/mysql_log.html">
+            
+                    
+                    Mysql Bin Log
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.5" data-path="../../db/mysql/0-qa.html">
+            
+                <a href="../../db/mysql/0-qa.html">
+            
+                    
+                    Qa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.6" data-path="../../db/mysql/timezone.html">
+            
+                <a href="../../db/mysql/timezone.html">
+            
+                    
+                    Timezone
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.7" data-path="../../db/mysql/sql.html">
+            
+                <a href="../../db/mysql/sql.html">
+            
+                    
+                    mysql-server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3.8" data-path="../../db/mysql/dbz.html">
+            
+                <a href="../../db/mysql/dbz.html">
+            
+                    
+                    Dbz
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../../db/oracle/sql.html">
+            
+                <a href="../../db/oracle/sql.html">
+            
+                    
+                    Oracle
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.4.1" data-path="../../db/oracle/archivelog.html">
+            
+                <a href="../../db/oracle/archivelog.html">
+            
+                    
+                    Archivelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4.2" data-path="../../db/oracle/fieldType.html">
+            
+                <a href="../../db/oracle/fieldType.html">
+            
+                    
+                    FieldType
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4.3" data-path="../../db/oracle/oracle_debeIum.html">
+            
+                <a href="../../db/oracle/oracle_debeIum.html">
+            
+                    
+                    Oracle DebeIum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4.4" data-path="../../db/oracle/supplementalLog.html">
+            
+                <a href="../../db/oracle/supplementalLog.html">
+            
+                    
+                    SupplementalLog
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../../db/pg/sql.html">
+            
+                <a href="../../db/pg/sql.html">
+            
+                    
+                    Pg
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.5.1" data-path="../../db/pg/debe.html">
+            
+                <a href="../../db/pg/debe.html">
+            
+                    
+                    Debe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5.2" data-path="../../db/pg/fieldType.html">
+            
+                <a href="../../db/pg/fieldType.html">
+            
+                    
+                    FieldType
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5.3" data-path="../../db/pg/install.html">
+            
+                <a href="../../db/pg/install.html">
+            
+                    
+                    Install
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5.4" data-path="../../db/pg/meta-sql.html">
+            
+                <a href="../../db/pg/meta-sql.html">
+            
+                    
+                    Meta Sql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="../../db/sqlserver/sql.html">
+            
+                <a href="../../db/sqlserver/sql.html">
+            
+                    
+                    Sqlserver
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.6.1" data-path="../../db/sqlserver/sql.html">
+            
+                <a href="../../db/sqlserver/sql.html">
+            
+                    
+                    Sql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../java/java_readme.html">
+            
+                <a href="../../java/java_readme.html">
+            
+                    
+                    java
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../java/jse/jse-qa.html">
+            
+                <a href="../../java/jse/jse-qa.html">
+            
+                    
+                    Jse
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.1" data-path="../../java/jse/0-jvm/">
+            
+                <a href="../../java/jse/0-jvm/">
+            
+                    
+                    Jvm
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.1.1" data-path="../../java/jse/0-jvm/0-字节码.html">
+            
+                <a href="../../java/jse/0-jvm/0-字节码.html">
+            
+                    
+                    字节码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.1.2" data-path="../../java/jse/0-jvm/1-类加载器.html">
+            
+                <a href="../../java/jse/0-jvm/1-类加载器.html">
+            
+                    
+                    类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.1.3" data-path="../../java/jse/0-jvm/2-jvm.html">
+            
+                <a href="../../java/jse/0-jvm/2-jvm.html">
+            
+                    
+                    Jvm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.1.4" data-path="../../java/jse/0-jvm/2-jvm内存优化设置.html">
+            
+                <a href="../../java/jse/0-jvm/2-jvm内存优化设置.html">
+            
+                    
+                    Jvm内存优化设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.1.5" data-path="../../java/jse/0-jvm/3-gc.html">
+            
+                <a href="../../java/jse/0-jvm/3-gc.html">
+            
+                    
+                    Gc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.1.6" data-path="../../java/jse/0-jvm/4-gc监控.html">
+            
+                <a href="../../java/jse/0-jvm/4-gc监控.html">
+            
+                    
+                    Gc监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2" data-path="../../java/jse/threads/1-qa.html">
+            
+                <a href="../../java/jse/threads/1-qa.html">
+            
+                    
+                    Threads
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.2.1" data-path="../../java/jse/threads/0-JMM.html">
+            
+                <a href="../../java/jse/threads/0-JMM.html">
+            
+                    
+                    JMM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.2" data-path="../../java/jse/threads/0-note.html">
+            
+                <a href="../../java/jse/threads/0-note.html">
+            
+                    
+                    Note
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.3" data-path="../../java/jse/threads/0-线程不安全例子.html">
+            
+                <a href="../../java/jse/threads/0-线程不安全例子.html">
+            
+                    
+                    线程不安全例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.4" data-path="../../java/jse/threads/1-ThreadLocal.html">
+            
+                <a href="../../java/jse/threads/1-ThreadLocal.html">
+            
+                    
+                    ThreadLocal
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.5" data-path="../../java/jse/threads/1-ThreadPool.html">
+            
+                <a href="../../java/jse/threads/1-ThreadPool.html">
+            
+                    
+                    ThreadPool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.6" data-path="../../java/jse/threads/1-synchronized.html">
+            
+                <a href="../../java/jse/threads/1-synchronized.html">
+            
+                    
+                    Synchronized
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.7" data-path="../../java/jse/threads/juc/0-AQS.html">
+            
+                <a href="../../java/jse/threads/juc/0-AQS.html">
+            
+                    
+                    AQS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.8" data-path="../../java/jse/threads/juc/0-Lock.html">
+            
+                <a href="../../java/jse/threads/juc/0-Lock.html">
+            
+                    
+                    Lock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.9" data-path="../../java/jse/threads/juc/0-condition.html">
+            
+                <a href="../../java/jse/threads/juc/0-condition.html">
+            
+                    
+                    Condition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.10" data-path="../../java/jse/threads/juc/0-volatile.html">
+            
+                <a href="../../java/jse/threads/juc/0-volatile.html">
+            
+                    
+                    Volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.11" data-path="../../java/jse/threads/juc/1-CAS.html">
+            
+                <a href="../../java/jse/threads/juc/1-CAS.html">
+            
+                    
+                    CAS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.2.12" data-path="../../java/jse/threads/juc/2-CyclicBarrir.html">
+            
+                <a href="../../java/jse/threads/juc/2-CyclicBarrir.html">
+            
+                    
+                    CyclicBarrir
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.3" data-path="../../java/jse/0-fresh.html">
+            
+                <a href="../../java/jse/0-fresh.html">
+            
+                    
+                    Fresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.4" data-path="../../java/jse/0-oop/note.html">
+            
+                <a href="../../java/jse/0-oop/note.html">
+            
+                    
+                    Oop
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.4.1" data-path="../../java/jse/0-oop/note-oop.html">
+            
+                <a href="../../java/jse/0-oop/note-oop.html">
+            
+                    
+                    Note Oop
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.5" data-path="../../java/jse/0-reflect.html">
+            
+                <a href="../../java/jse/0-reflect.html">
+            
+                    
+                    Reflect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.6" data-path="../../java/jse/0-字符串编码.html">
+            
+                <a href="../../java/jse/0-字符串编码.html">
+            
+                    
+                    字符串编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.7" data-path="../../java/jse/collection/0-qa.html">
+            
+                <a href="../../java/jse/collection/0-qa.html">
+            
+                    
+                    Collection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.7.1" data-path="../../java/jse/collection/0-ArrayList.html">
+            
+                <a href="../../java/jse/collection/0-ArrayList.html">
+            
+                    
+                    ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.7.2" data-path="../../java/jse/collection/0-ConcurrentHashMap.html">
+            
+                <a href="../../java/jse/collection/0-ConcurrentHashMap.html">
+            
+                    
+                    ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.7.3" data-path="../../java/jse/collection/0-enum.html">
+            
+                <a href="../../java/jse/collection/0-enum.html">
+            
+                    
+                    Enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.7.4" data-path="../../java/jse/collection/0-hashmap.html">
+            
+                <a href="../../java/jse/collection/0-hashmap.html">
+            
+                    
+                    Hashmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.7.5" data-path="../../java/jse/collection/1-priorityQueue.html">
+            
+                <a href="../../java/jse/collection/1-priorityQueue.html">
+            
+                    
+                    优先级队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8" data-path="../../java/jse/designPattern/0-agent.html">
+            
+                <a href="../../java/jse/designPattern/0-agent.html">
+            
+                    
+                    DesignPattern
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.8.1" data-path="../../java/jse/designPattern/0-adapter.html">
+            
+                <a href="../../java/jse/designPattern/0-adapter.html">
+            
+                    
+                    Adapter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8.2" data-path="../../java/jse/designPattern/0-factory.html">
+            
+                <a href="../../java/jse/designPattern/0-factory.html">
+            
+                    
+                    Factory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8.3" data-path="../../java/jse/designPattern/0-singleton.html">
+            
+                <a href="../../java/jse/designPattern/0-singleton.html">
+            
+                    
+                    Singleton
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8.4" data-path="../../java/jse/designPattern/1-Decorator.html">
+            
+                <a href="../../java/jse/designPattern/1-Decorator.html">
+            
+                    
+                    Decorator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8.5" data-path="../../java/jse/designPattern/1-ps.html">
+            
+                <a href="../../java/jse/designPattern/1-ps.html">
+            
+                    
+                    Ps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.8.6" data-path="../../java/jse/designPattern/2-facade.html">
+            
+                <a href="../../java/jse/designPattern/2-facade.html">
+            
+                    
+                    Facade
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.9" data-path="../../java/jse/dubbo/0-qa.html">
+            
+                <a href="../../java/jse/dubbo/0-qa.html">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.9.1" data-path="../../java/jse/dubbo/0-netty.html">
+            
+                <a href="../../java/jse/dubbo/0-netty.html">
+            
+                    
+                    Netty
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.10" data-path="../../java/jse/maven.html">
+            
+                <a href="../../java/jse/maven.html">
+            
+                    
+                    Maven
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.11" data-path="../../java/jse/nio/0-note.html">
+            
+                <a href="../../java/jse/nio/0-note.html">
+            
+                    
+                    Nio
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.11.1" data-path="../../java/jse/nio/2-netty.html">
+            
+                <a href="../../java/jse/nio/2-netty.html">
+            
+                    
+                    Netty
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.11.2" data-path="../../java/jse/nio/2-NIO.html">
+            
+                <a href="../../java/jse/nio/2-NIO.html">
+            
+                    
+                    NIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.1.12" data-path="../../java/jse/o-关键字.html">
+            
+                <a href="../../java/jse/o-关键字.html">
+            
+                    
+                    关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../java/spring/0-qa.html">
+            
+                <a href="../../java/spring/0-qa.html">
+            
+                    
+                    Spring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.2.1" data-path="../../java/spring/0-ioc.html">
+            
+                <a href="../../java/spring/0-ioc.html">
+            
+                    
+                    ioc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.2" data-path="../../java/spring/0-bean.html">
+            
+                <a href="../../java/spring/0-bean.html">
+            
+                    
+                    Bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.3" data-path="../../java/spring/0-循环依赖.html">
+            
+                <a href="../../java/spring/0-循环依赖.html">
+            
+                    
+                    循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.4" data-path="../../java/spring/aop.html">
+            
+                <a href="../../java/spring/aop.html">
+            
+                    
+                    Aop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.5" data-path="../../java/spring/anno.html">
+            
+                <a href="../../java/spring/anno.html">
+            
+                    
+                    Anno
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.6" data-path="../../java/spring/1-mvc.html">
+            
+                <a href="../../java/spring/1-mvc.html">
+            
+                    
+                    Mvc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.7" data-path="../../java/spring/1-mybatis.html">
+            
+                <a href="../../java/spring/1-mybatis.html">
+            
+                    
+                    Mybatis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.8" data-path="../../java/spring/1-transaction.html">
+            
+                <a href="../../java/spring/1-transaction.html">
+            
+                    
+                    Transaction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.9" data-path="../../java/spring/0-springboot.html">
+            
+                <a href="../../java/spring/0-springboot.html">
+            
+                    
+                    Springboot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.10" data-path="../../java/spring/1-springcloud.html">
+            
+                <a href="../../java/spring/1-springcloud.html">
+            
+                    
+                    SpringCloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.11" data-path="../../java/spring/2-async.html">
+            
+                <a href="../../java/spring/2-async.html">
+            
+                    
+                    Async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2.12" data-path="../../java/spring/tools/0-log.html">
+            
+                <a href="../../java/spring/tools/0-log.html">
+            
+                    
+                    Tools
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.2.12.1" data-path="../../java/spring/tools/0-lombok.html">
+            
+                <a href="../../java/spring/tools/0-lombok.html">
+            
+                    
+                    Lombok
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../go/">
+            
+                <a href="../../go/">
+            
+                    
+                    Go
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../frontend/frontend.html">
+            
+                <a href="../../frontend/frontend.html">
+            
+                    
+                    frontend
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../../frontend/typescript/ts.html">
+            
+                <a href="../../frontend/typescript/ts.html">
+            
+                    
+                    typescript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../../frontend/iblog/myblog.html">
+            
+                <a href="../../frontend/iblog/myblog.html">
+            
+                    
+                    blog
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../blockchain/blockchain.html">
+            
+                <a href="../../blockchain/blockchain.html">
+            
+                    
+                    blockchain
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="../../blockchain/ethereum/eth.html">
+            
+                <a href="../../blockchain/ethereum/eth.html">
+            
+                    
+                    ethereum
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1.1" data-path="../../blockchain/ethereum/solidity1.html">
+            
+                <a href="../../blockchain/ethereum/solidity1.html">
+            
+                    
+                    solidity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.1.2" data-path="../../blockchain/ethereum/transaction.html">
+            
+                <a href="../../blockchain/ethereum/transaction.html">
+            
+                    
+                    transaction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.1.3" data-path="../../blockchain/ethereum/z2_dev.html">
+            
+                <a href="../../blockchain/ethereum/z2_dev.html">
+            
+                    
+                    dev2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../bench/开源项目.html">
+            
+                <a href="../../bench/开源项目.html">
+            
+                    
+                    Bench
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="../../bench/datax.html">
+            
+                <a href="../../bench/datax.html">
+            
+                    
+                    Datax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Install
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.2.1" data-path="../../bench/datax.html">
+            
+                <a href="../../bench/datax.html">
+            
+                    
+                    Ng
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.3" data-path="../../bench/nifi.html">
+            
+                <a href="../../bench/nifi.html">
+            
+                    
+                    Nifi
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.4" data-path="../../bench/todo.html">
+            
+                <a href="../../bench/todo.html">
+            
+                    
+                    Todo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../mbp/note.html">
+            
+                <a href="../../mbp/note.html">
+            
+                    
+                    Mbp
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" data-path="../../mbp/idea.html">
+            
+                <a href="../../mbp/idea.html">
+            
+                    
+                    Idea
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2.2" data-path="../../mbp/tool.html">
+            
+                <a href="../../mbp/tool.html">
+            
+                    
+                    其他工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../../aws/note.html">
+            
+                <a href="../../aws/note.html">
+            
+                    
+                    aws
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1" data-path="../../aws/class1/clp.html">
+            
+                <a href="../../aws/class1/clp.html">
+            
+                    
+                    AWS Cloud Practitioner
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1" data-path="../../aws/class1/clp1.html">
+            
+                <a href="../../aws/class1/clp1.html">
+            
+                    
+                    1-ec2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.2" data-path="../../aws/class1/clp2_vpc.html">
+            
+                <a href="../../aws/class1/clp2_vpc.html">
+            
+                    
+                    2-vpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.3" data-path="../../aws/class1/clp3_storage.html">
+            
+                <a href="../../aws/class1/clp3_storage.html">
+            
+                    
+                    3-s3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.4" data-path="../../aws/class1/clp4_db.html">
+            
+                <a href="../../aws/class1/clp4_db.html">
+            
+                    
+                    4-db
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.5" data-path="../../aws/class1/clp5_Security.html">
+            
+                <a href="../../aws/class1/clp5_Security.html">
+            
+                    
+                    5-security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.6" data-path="../../aws/class1/clp6_monitor.html">
+            
+                <a href="../../aws/class1/clp6_monitor.html">
+            
+                    
+                    6-monitor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Hive</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#hivesql&#x8F6C;&#x6362;&#x6210;mapreduce&#x7684;&#x8FC7;&#x7A0B;"><b>1. </b>hiveSQL&#x8F6C;&#x6362;&#x6210;MapReduce&#x7684;&#x8FC7;&#x7A0B;</a></li><li><span class="title-icon "></span><a href="#hive-&#x670D;&#x52A1;&#x4F18;&#x5316;"><b>2. </b>hive &#x670D;&#x52A1;&#x4F18;&#x5316;</a></li><li><span class="title-icon "></span><a href="#hive-sql-&#x4F18;&#x5316;"><b>3. </b>hive sql &#x4F18;&#x5316;</a></li><li><span class="title-icon "></span><a href="#hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;"><b>4. </b>hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;"><b>4.1. </b>&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;</a></li><li><span class="title-icon "></span><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><b>4.2. </b>&#x89E3;&#x51B3;&#x65B9;&#x6848;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><b>4.2.1. </b>&#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</a></li><li><span class="title-icon "></span><a href="#map&#x7AEF;&#x805A;&#x5408;"><b>4.2.2. </b>map&#x7AEF;&#x805A;&#x5408;</a></li><li><span class="title-icon "></span><a href="#join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;"><b>4.2.3. </b>join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;</a></li></ul></ul></ul></div><a href="#hivesql&#x8F6C;&#x6362;&#x6210;mapreduce&#x7684;&#x8FC7;&#x7A0B;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="hivesql&#x8F6C;&#x6362;&#x6210;mapreduce&#x7684;&#x8FC7;&#x7A0B;"><a name="hivesql&#x8F6C;&#x6362;&#x6210;mapreduce&#x7684;&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#hivesql&#x8F6C;&#x6362;&#x6210;mapreduce&#x7684;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>1. hiveSQL&#x8F6C;&#x6362;&#x6210;MapReduce&#x7684;&#x8FC7;&#x7A0B;</h1>
+<p>HiveSQL -&gt;AST(&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;) -&gt; QB(&#x67E5;&#x8BE2;&#x5757;) -&gt;OperatorTree&#xFF08;&#x64CD;&#x4F5C;&#x6811;&#xFF09;-&gt;&#x4F18;&#x5316;&#x540E;&#x7684;&#x64CD;&#x4F5C;&#x6811;-&gt;mapreduce&#x4EFB;&#x52A1;&#x6811;-&gt;&#x4F18;&#x5316;&#x540E;&#x7684;mapreduce&#x4EFB;&#x52A1;&#x6811;</p>
+<h1 id="hive-&#x670D;&#x52A1;&#x4F18;&#x5316;"><a name="hive-&#x670D;&#x52A1;&#x4F18;&#x5316;" class="anchor-navigation-ex-anchor" href="#hive-&#x670D;&#x52A1;&#x4F18;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>2. hive &#x670D;&#x52A1;&#x4F18;&#x5316;</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/296254978" target="_blank">Hive&#x8C03;&#x4F18;&#x6280;&#x5DE7;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;</a></p>
+<ol>
+<li>&#x6570;&#x636E;&#x503E;&#x659C;&#x89D2;&#x5EA6;</li>
+<li><p>&#x5BF9;&#x5C0F;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x5408;&#x5E76;<br>hive&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code>&#x8BBE;&#x7F6E;map&#x8F93;&#x5165;&#x5408;&#x5E76;&#x5C0F;&#x6587;&#x4EF6;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#xFF1A;
+
+//&#x6BCF;&#x4E2A;Map&#x6700;&#x5927;&#x8F93;&#x5165;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x5408;&#x5E76;&#x540E;&#x6587;&#x4EF6;&#x7684;&#x6570;&#x91CF;)
+set mapred.max.split.size=256000000;  
+//&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;split&#x7684;&#x81F3;&#x5C11;&#x7684;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x591A;&#x4E2A;DataNode&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x9700;&#x8981;&#x5408;&#x5E76;)
+set mapred.min.split.size.per.node=100000000;
+//&#x4E00;&#x4E2A;&#x4EA4;&#x6362;&#x673A;&#x4E0B;split&#x7684;&#x81F3;&#x5C11;&#x7684;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x591A;&#x4E2A;&#x4EA4;&#x6362;&#x673A;&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x9700;&#x8981;&#x5408;&#x5E76;)  
+set mapred.min.split.size.per.rack=100000000;
+//&#x6267;&#x884C;Map&#x524D;&#x8FDB;&#x884C;&#x5C0F;&#x6587;&#x4EF6;&#x5408;&#x5E76;
+set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; 
+
+&#x8BBE;&#x7F6E;map&#x8F93;&#x51FA;&#x548C;reduce&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#xFF1A;
+
+//&#x8BBE;&#x7F6E;map&#x7AEF;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;true
+set hive.merge.mapfiles = true
+//&#x8BBE;&#x7F6E;reduce&#x7AEF;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;false
+set hive.merge.mapredfiles = true
+//&#x8BBE;&#x7F6E;&#x5408;&#x5E76;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;
+set hive.merge.size.per.task = 256*1000*1000
+//&#x5F53;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x7684;&#x5E73;&#x5747;&#x5927;&#x5C0F;&#x5C0F;&#x4E8E;&#x8BE5;&#x503C;&#x65F6;&#xFF0C;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;MapReduce&#x4EFB;&#x52A1;&#x8FDB;&#x884C;&#x6587;&#x4EF6;merge&#x3002;
+set hive.merge.smallfiles.avgsize=16000000
+&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;
+&#x7248;&#x6743;&#x58F0;&#x660E;&#xFF1A;&#x672C;&#x6587;&#x4E3A;CSDN&#x535A;&#x4E3B;&#x300C;&#x4E0B;&#x5C71;&#x5316;&#x7F18;&#x7684;DJ&#x300D;&#x7684;&#x539F;&#x521B;&#x6587;&#x7AE0;&#xFF0C;&#x9075;&#x5FAA;CC 4.0 BY-SA&#x7248;&#x6743;&#x534F;&#x8BAE;&#xFF0C;&#x8F6C;&#x8F7D;&#x8BF7;&#x9644;&#x4E0A;&#x539F;&#x6587;&#x51FA;&#x5904;&#x94FE;&#x63A5;&#x53CA;&#x672C;&#x58F0;&#x660E;&#x3002;
+&#x539F;&#x6587;&#x94FE;&#x63A5;&#xFF1A;https://blog.csdn.net/qq_39150361/article/details/117911513
+</code></pre></li>
+<li><p>map&#x3001;reduce&#x4EFB;&#x52A1;&#x6570;&#x91CF;<br>&#x5982;&#x679C;reduce&#x592A;&#x5C11;&#xFF1A;&#x5982;&#x679C;&#x6570;&#x636E;&#x91CF;&#x5F88;&#x5927;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x8FD9;&#x4E2A;reduce&#x5F02;&#x5E38;&#x7684;&#x6162;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x8FD9;&#x4E2A;&#x4EFB;&#x52A1;&#x4E0D;&#x80FD;&#x7ED3;&#x675F;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x4F1A;OOM 2&#x3001;&#x5982;&#x679C;reduce&#x592A;&#x591A;&#xFF1A; &#x4EA7;&#x751F;&#x7684;&#x5C0F;&#x6587;&#x4EF6;&#x592A;&#x591A;&#xFF0C;&#x5408;&#x5E76;&#x8D77;&#x6765;&#x4EE3;&#x4EF7;&#x592A;&#x9AD8;&#xFF0C;namenode&#x7684;&#x5185;&#x5B58;&#x5360;&#x7528;&#x4E5F;&#x4F1A;&#x589E;&#x5927;&#x3002;</p>
+<pre><code>//&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x63A7;&#x5236;&#x4E00;&#x4E2A;job&#x4F1A;&#x6709;&#x591A;&#x5C11;&#x4E2A;reducer&#x6765;&#x5904;&#x7406;&#xFF0C;&#x4F9D;&#x636E;&#x7684;&#x662F;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x7684;&#x603B;&#x5927;&#x5C0F;&#x3002;&#x9ED8;&#x8BA4;1GB&#x3002;
+hive.exec.reducers.bytes.per.reducer
+
+//&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x63A7;&#x5236;&#x6700;&#x5927;&#x7684;reducer&#x7684;&#x6570;&#x91CF;&#xFF0C; &#x5982;&#x679C; input / bytes per reduce &gt; max &#x5219;&#x4F1A;&#x542F;&#x52A8;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x6240;&#x6307;&#x5B9A;&#x7684;reduce&#x4E2A;&#x6570;&#x3002;&#x8FD9;&#x4E2A;&#x5E76;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;mapre.reduce.tasks&#x53C2;&#x6570;&#x7684;&#x8BBE;&#x7F6E;&#x3002;&#x9ED8;&#x8BA4;&#x7684;max&#x662F;999&#x3002;
+hive.exec.reducers.max 
+
+//&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;&#xFF0C;hive&#x5C31;&#x4E0D;&#x4F1A;&#x7528;&#x5B83;&#x7684;estimation&#x51FD;&#x6570;&#x6765;&#x81EA;&#x52A8;&#x8BA1;&#x7B97;reduce&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x800C;&#x662F;&#x7528;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x6765;&#x542F;&#x52A8;reducer&#x3002;&#x9ED8;&#x8BA4;&#x662F;-1&#x3002;
+mapred.reduce.tasks
+</code></pre></li>
+</ol>
+<h1 id="hive-sql-&#x4F18;&#x5316;"><a name="hive-sql-&#x4F18;&#x5316;" class="anchor-navigation-ex-anchor" href="#hive-sql-&#x4F18;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>3. hive sql &#x4F18;&#x5316;</h1>
+<p>&#x628A;hive sql&#x5F53;&#x505A;mapreduce&#x7A0B;&#x5E8F;&#x6765;&#x8BFB;&#xFF0C;&#x7406;&#x89E3;hadoop&#x7684;&#x6838;&#x5FC3;&#x80FD;&#x529B;&#xFF0C;&#x662F;hive&#x4F18;&#x5316;&#x7684;&#x6839;&#x672C;&#x3002;</p>
+<ol>
+<li><p>&#x5C0F;&#x6587;&#x4EF6;&#x89D2;&#x5EA6;<br>hive&#x4E2D;&#x5BF9;&#x8868;&#x6267;&#x884C;insert into &#x64CD;&#x4F5C;&#xFF0C;&#x6BCF;&#x6B21;&#x63D2;&#x5165;&#x6570;&#x636E;&#x90FD;&#x5728;&#x8868;&#x76EE;&#x5F55;&#x4E0B;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;,&#x8FD9;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#x5C31;&#x662F;MR&#x4EFB;&#x52A1;reduce&#x7AEF;&#x7684;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x3002;
+&#x89E3;&#x51B3;&#xFF1A;insert overwrite into table t_new as select * from t_old;</p>
+</li>
+<li><p>&#x6CE8;&#x610F;&#x6548;&#x7387;&#x4F4E;&#x4E0B;&#x7684;&#x51FD;&#x6570;&#x3001;&#x5173;&#x952E;&#x5B57;&#x4F7F;&#x7528;&#xFF08;&#x907F;&#x514D;&#x503E;&#x659C;&#xFF09;
+<a href="https://blog.csdn.net/BIT_666/article/details/124798817" target="_blank">COUNT(DISTINCT id)&#x7684;&#x4F18;&#x5316;</a><br>GROUP BY&#x64CD;&#x4F5C;</p>
+</li>
+<li><p>&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x53EA;&#x8BFB;&#x53D6;&#x67E5;&#x8BE2;&#x4E2D;&#x6240;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x5217;&#x3001;&#x51CF;&#x5C11;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x5206;&#x533A; </p>
+</li>
+</ol>
+<h1 id="hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;"><a name="hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;" class="anchor-navigation-ex-anchor" href="#hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;"><i class="fa fa-link" aria-hidden="true"></i></a>4. hive&#x6570;&#x636E;&#x503E;&#x659C;&#x600E;&#x4E48;&#x89E3;&#x51B3;</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/425104815" target="_blank">https://zhuanlan.zhihu.com/p/425104815</a><br><a href="https://www.studytime.xin/article/hive-knowledge-data-skew.html" target="_blank">https://www.studytime.xin/article/hive-knowledge-data-skew.html</a></p>
+<p>&#x6570;&#x636E;&#x503E;&#x659C;&#x540E;&#x76F4;&#x89C2;&#x8868;&#x73B0;&#x662F;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x7684;SQL&#x8BED;&#x53E5;&#xFF0C;&#x4EFB;&#x52A1;&#x7684;&#x8FDB;&#x5EA6;&#x6761;&#x957F;&#x65F6;&#x95F4;&#x5361;&#x5728;99%&#xFF0C;&#x4E0D;&#x786E;&#x5B9A;&#x8FD8;&#x9700;&#x591A;&#x4E45;&#x624D;&#x80FD;&#x7ED3;&#x675F;&#xFF0C;&#x8FD9;&#x79CD;&#x73B0;&#x8C61;&#x79F0;&#x4E4B;&#x4E3A;&#x6570;&#x636E;&#x503E;&#x659C;&#x3002;&#x4E5F;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;Out Of Memory&#x3002;  </p>
+<p>&#x5728;&#x6574;&#x4E2A;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5927;&#x91CF;&#x76F8;&#x540C;&#x7684;key&#x88AB;&#x5206;&#x914D;&#x5230;&#x4E86;&#x540C;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x4E0A;&#xFF0C;&#x9020;&#x6210;&#x201C;&#x4E00;&#x4E2A;&#x4EBA;&#x7D2F;&#x6B7B;&#x3001;&#x5176;&#x4ED6;&#x4EBA;&#x95F2;&#x6B7B;&#x201D;&#x7684;&#x72B6;&#x51B5;&#xFF0C;&#x8FD9;&#x8FDD;&#x80CC;&#x4E86;&#x5206;&#x5E03;&#x5F0F;&#x8BA1;&#x7B97;&#x7684;&#x521D;&#x8877;&#xFF0C;&#x4F7F;&#x5F97;&#x6574;&#x4F53;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x5341;&#x5206;&#x4F4E;&#x4E0B;&#x3002;</p>
+<p>Map&#x7AEF;&#x7684;&#x6570;&#x636E;&#x503E;&#x659C;&#x4E00;&#x822C;&#x662F;&#x7531;&#x4E8E; HDFS &#x6570;&#x636E;&#x5B58;&#x50A8;&#x4E0D;&#x5747;&#x5300;&#x9020;&#x6210;&#x7684;&#xFF08;&#x4E00;&#x822C;&#x5B58;&#x50A8;&#x90FD;&#x662F;&#x5747;&#x5300;&#x5206;&#x5757;&#x5B58;&#x50A8;&#xFF0C;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x57FA;&#x672C;&#x56FA;&#x5B9A;&#xFF0C;&#x6240;&#x4EE5;&#x53D1;&#x751F;&#x6570;&#x636E;&#x503E;&#x659C;&#x6982;&#x7387;&#x6BD4;&#x8F83;&#x5C0F;&#xFF09;&#x3002;<br>Reduce&#x9636;&#x6BB5;&#xFF08;&#x6216;&#x8005;&#x8BF4;&#x662F;Shuffle&#x9636;&#x6BB5;&#xFF09;&#x7684;&#x6570;&#x636E;&#x503E;&#x659C;&#x51E0;&#x4E4E;&#x90FD;&#x662F;&#x56E0;&#x4E3A;&#x6570;&#x636E;&#x7814;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;&#x6CA1;&#x6709;&#x8003;&#x8651;&#x5230;&#x67D0;&#x79CD;key&#x503C;&#x6570;&#x636E;&#x91CF;&#x504F;&#x591A;&#x7684;&#x60C5;&#x51B5;&#x800C;&#x5BFC;&#x81F4;&#x7684;&#x3002;</p>
+<h2 id="&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;"><a name="&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;" class="anchor-navigation-ex-anchor" href="#&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1. &#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;</h2>
+<ul>
+<li>&#x6570;&#x636E;&#x67D0;&#x5B57;&#x6BB5;&#x503C;&#x5206;&#x5E03;&#x4E0D;&#x5747;&#x5300;&#x5BFC;&#x81F4;count(distinct)&#x3001;count(distinct)&#x65F6;&#x4EA7;&#x751F;&#x503E;&#x659C;&#x95EE;&#x9898;&#x3002;</li>
+<li>&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x672C;&#x8EAB;&#x7684;&#x7279;&#x6027;</li>
+<li>&#x5EFA;&#x8868;&#x65F6;&#x8003;&#x8651;&#x4E0D;&#x5468;</li>
+<li>&#x67D0;&#x4E9B;SQL&#x8BED;&#x53E5;&#x672C;&#x8EAB;&#x5C31;&#x6709;&#x6570;&#x636E;&#x503E;&#x659C;</li>
+</ul>
+<h2 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;"><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="anchor-navigation-ex-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2. &#x89E3;&#x51B3;&#x65B9;&#x6848;</h2>
+<h3 id="&#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a name="&#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="anchor-navigation-ex-anchor" href="#&#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2.1. &#x5F00;&#x542F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3>
+<p><code>set hive.groupby.skewindata=true</code> &#xFF08;&#x9ED8;&#x8BA4;&#x4E3A;false&#xFF09;<br>&#x4F1A;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x989D;&#x5916;&#x7684; MR Job&#xFF1A;<br>&#x5728;&#x7B2C;&#x4E00;&#x4E2A; MapReduce &#x4E2D;&#xFF0C;map &#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x96C6;&#x5408;&#x9996;&#x5148;&#x4F1A;&#x968F;&#x673A;&#x5206;&#x914D;&#x5230; reduce &#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x6BCF;&#x4E2A; Reduce &#x505A;&#x5C40;&#x90E8;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x5E76;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x8FD9;&#x6837;&#x5904;&#x7406;&#x7684;&#x539F;&#x56E0;&#x662F;&#x76F8;&#x540C;&#x7684;Group By Key&#x6709;&#x53EF;&#x80FD;&#x88AB;&#x5206;&#x53D1;&#x5230;&#x4E0D;&#x540C;&#x7684; Reduce Job&#x4E2D;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x76EE;&#x7684;&#x3002;<br>&#x7B2C;&#x4E8C;&#x4E2A; MapReduce &#x518D;&#x6839;&#x636E;&#x9884;&#x5904;&#x7406;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x679C;&#x6309;&#x7167; Group By Key &#x5206;&#x5E03;&#x5230; Reduce &#x4E2D;&#xFF08;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x76F8;&#x540C;&#x7684; Group By Key &#x88AB;&#x5206;&#x5E03;&#x5230;&#x540C;&#x4E00;&#x4E2A; Reduce &#x4E2D;&#xFF09;&#xFF0C;&#x6700;&#x540E;&#x5B8C;&#x6210;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-9951765/6afa5f545cd740d2e28b0af93797887b.png?imageView2/2/w/1620" alt=""></p>
+<h3 id="map&#x7AEF;&#x805A;&#x5408;"><a name="map&#x7AEF;&#x805A;&#x5408;" class="anchor-navigation-ex-anchor" href="#map&#x7AEF;&#x805A;&#x5408;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2.2. map&#x7AEF;&#x805A;&#x5408;</h3>
+<p><code>set hive.map.aggr=true&#xFF1B;</code>&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A;ture&#xFF09;&#x7528;&#x4E8E;&#x8BBE;&#x5B9A;&#x662F;&#x5426;&#x5728; map &#x7AEF;&#x8FDB;&#x884C;&#x805A;&#x5408;<br><code>set hive.groupby.mapaggr.checkinterval=100000</code>&#x8BBE;&#x5B9A; map &#x7AEF;&#x8FDB;&#x884C;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x7684;&#x6761;&#x76EE;&#x6570;</p>
+<h3 id="join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;"><a name="join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;" class="anchor-navigation-ex-anchor" href="#join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2.3. join&#x8FDE;&#x63A5;&#x65F6;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;</h3>
+<p>&#x4E24;&#x8868;&#x8FDB;&#x884C;join&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x8868;&#x8FDE;&#x63A5;&#x7684;key&#x5B58;&#x5728;&#x503E;&#x659C;&#xFF0C;&#x90A3;&#x4E48;&#x5728; Shuffle &#x9636;&#x6BB5;&#x5FC5;&#x7136;&#x4F1A;&#x5F15;&#x8D77;&#x6570;&#x636E;&#x503E;&#x659C;&#x3002;</p>
+<ul>
+<li>&#x5C0F;&#x8868;join&#x5927;&#x8868;&#xFF0C;&#x67D0;&#x4E2A;key&#x8FC7;&#x5927;
+&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A;mapjoin(&#x9ED8;&#x8BA4;&#x542F;&#x52A8;&#x8BE5;&#x4F18;&#x5316;)&#xFF0C;join &#x64CD;&#x4F5C;&#x5728; Map &#x9636;&#x6BB5;&#x5B8C;&#x6210;&#xFF0C;&#x4E0D;&#x518D;&#x9700;&#x8981;Reduce&#xFF0C;&#x524D;&#x63D0;&#x6761;&#x4EF6;&#x662F;&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x5728; Map &#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;&#x3002;</li>
+<li>&#x8868;&#x4E2D;&#x4F5C;&#x4E3A;&#x5173;&#x8054;&#x6761;&#x4EF6;&#x7684;&#x5B57;&#x6BB5;&#x503C;&#x4E3A;0&#x6216;&#x7A7A;&#x503C;&#x7684;&#x8F83;&#x591A;
+&#x6240;&#x6709;&#x7684;null&#x503C;&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x4E00;&#x4E2A;reduce&#x4E2D;&#x3002;<br>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A;&#x56E0;&#x4E3A;null&#x503C;&#x53C2;&#x4E0E;shuffle&#x65F6;&#x7684;hash&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7ED9;null&#x503C;&#x968F;&#x673A;&#x8D4B;&#x503C;&#xFF0C;&#x8FD9;&#x6837;&#x5B83;&#x4EEC;&#x7684;hash&#x7ED3;&#x679C;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5C31;&#x4F1A;&#x8FDB;&#x5230;&#x4E0D;&#x540C;&#x7684;reduce&#x4E2D;&#x3002;</li>
+<li>&#x8868;&#x4E2D;&#x4F5C;&#x4E3A;&#x5173;&#x8054;&#x6761;&#x4EF6;&#x7684;&#x5B57;&#x6BB5;&#x91CD;&#x590D;&#x503C;&#x8FC7;&#x591A;</li>
+<li>&#x4E0D;&#x540C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5173;&#x8054;&#x4EA7;&#x751F;&#x6570;&#x636E;&#x503E;&#x659C;<br>&#x5982;&#x679C;key&#x5B57;&#x6BB5;&#x65E2;&#x6709;string&#x7C7B;&#x578B;&#x4E5F;&#x6709;int&#x7C7B;&#x578B;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;hash&#x5C31;&#x90FD;&#x4F1A;&#x6309;int&#x7C7B;&#x578B;&#x6765;&#x5206;&#x914D;&#x3002;<br>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A;&#x76F4;&#x63A5;&#x628A;int&#x7C7B;&#x578B;&#x90FD;&#x8F6C;&#x4E3A;string&#x5C31;&#x597D;&#x4E86;&#xFF0C;&#x8FD9;&#x6837;key&#x5B57;&#x6BB5;&#x90FD;&#x4E3A;string&#xFF0C;hash&#x65F6;&#x5C31;&#x6309;&#x7167;string&#x7C7B;&#x578B;&#x5206;&#x914D;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../hadoop/0-hdfs.html" class="navigation navigation-prev " aria-label="Previous page: Hdfs">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="field_type.html" class="navigation navigation-next " aria-label="Next page: Field Type">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Hive","level":"3.1.2","depth":2,"next":{"title":"Field Type","level":"3.1.2.1","depth":3,"path":"dataEngine/hive/field_type.md","ref":"dataEngine/hive/field_type.md","articles":[]},"previous":{"title":"Hdfs","level":"3.1.1.1","depth":3,"path":"dataEngine/hadoop/0-hdfs.md","ref":"dataEngine/hadoop/0-hdfs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchor-navigation-ex","chapter-fold","theme-comscore"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"theme-comscore":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"cyan","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"cyan文档库","gitbook":"*","description":"just to say hi","theme-default":{"showLevel":true}},"file":{"path":"dataEngine/hive/0-hive.md","mtime":"2023-05-23T16:27:35.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-23T16:28:24.652Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
